@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  font-family: "Montserrat", sans-serif;
+  --font-color: rgba(0, 0, 0, 1);
+  --bg-color: rgba(255, 255, 255, 1);
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  display: flex;
+  place-items: center;
+  max-width: 390px;
+}
+
+/* Header Section */
+
+.header {
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.header>img {
+  margin-left: 18px;
+}
+
+
+.header div img:not(:last-child) {
+  width: 30px;
+  height: 30px;
+}
+
+.right-side {
+  display: flex;
+  position: relative;
+}
+
+.right-side div:last-child {
+  margin-right: 18px;
+}
+
+.right-side>img {
+  margin-right: 16px;
+}
+
+.header div img:last-child {
+  position: absolute;
+  right: 16px;
+  margin-top: -3px;
+}
+
+/* Hero Section */
+
+.hero-section {
+  position: relative;
+  height: 256px;
+
+}
+
+.hero-section img {
+  opacity: 85%;
+}
+
+.hero-section p {
+  position: absolute;
+  top: 99px;
+  color: #000000;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29.26px;
+  width: 160px;
+  height: 58px;
+  text-align: left;
+  margin-top: 0;
+  margin-left: 18px;
+}
+
+
+/* Coffee Menu Section */
+
+.coffee-menu-section {
+  background-color: rgba(255, 255, 255, 0.97);
+  width: 390px;
+}
+
+.coffee-menu-section h1 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.94px;
+  color: var(--font-color);
+  padding-top: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+}
+
+.coffee-menu-section img:not(:last-child) {
+  width: 52px;
+  height: 54px;
+  margin-top: 14px;
+}
+
+.coffee-menu-section h2 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19.5px;
+  color: var(--font-color);
+  text-align: center;
+  margin: 8px auto 0;
+}
+
+.coffee-menu-section p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.63px;
+  color: var(--font-color);
+  width: 148px;
+  height: 75px;
+  margin-top: 4px;
+  margin-left: 11px;
+}
+
+.coffee-cart {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 19px;
+  margin-right: 19px;
+  padding-bottom: 10px;
+}
+
+.coffee-cart div {
+  width: 170px;
+  height: 268px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  background-color: var(--bg-color);
+  position: relative;
+}
+
+.coffee-cart div:nth-of-type(odd) {
+  margin-right: 11px;
+  margin-bottom: 10px;
+}
+
+.affogato-class {
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19.5px;
+  color: var(--font-color);
+  text-align: center;
+  margin: 8px auto 0;
+}
+
+.coffee-cart div button {
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10px;
+  transform: translate(-50%);
+}
+
+.coffee-cart div button img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+}
+
+
+/* Special Selection */
+
+
+.selection {
+  height: 345px;   
+  background-color: var(--bg-color);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.selection h3 {
+  width: 600;
+  font-size: 18px;
+  line-height: 21.94px;
+  color: var(--font-color);
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 14px;
+}
+
+.selection article {
+  width: 358px;
+  height: 275px;
+  margin-left: 16px;
+  margin-bottom: 14px;
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.selection article::-webkit-scrollbar {
+  display: none;
+}
+
+.selection article div {
+  margin-right: 8px;
+}
+
+.selection article img {
+  margin: 4px;
+}
+
+.selection article div h4 {
+  font-weight: 600;
+  line-height: 19.5px;
+  color: var(--font-color);
+}
+
+.selection article div p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17.07px;
+  color: var(--font-color);
+}
+
+/* Welcome Info */
+
+.welcome-info {
+  color: var(--font-color);
+  background-color: var(--bg-color);
+  height: 287px;
+  width: 390px;
+}
+
+.welcome-info h3 {
+  padding-top: 16px;
+}
+
+/* --------------- */
