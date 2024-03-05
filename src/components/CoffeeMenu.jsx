@@ -1,5 +1,5 @@
 import cupOfCoffee from '../assets/Image/Main Section Images/cup-of-coffee.png'
-import plus from '../assets/Image/Main Section Images/plus.png'
+
 
 export const CoffeeMenu = () => {
 
