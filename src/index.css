@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 :root {
   font-family: "Montserrat", sans-serif;
   --font-color: rgba(0, 0, 0, 1);
-  --bg-color: rgba(255, 255, 255, 1);
+  --bg-color-white: rgba(255, 255, 255, 1);
+  --blue: rgba(36, 140, 197, 1);
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -151,7 +153,7 @@ body {
   height: 268px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border-radius: 14px;
-  background-color: var(--bg-color);
+  background-color: var(--bg-color-white);
   position: relative;
 }
 
@@ -193,8 +195,8 @@ body {
 
 
 .selection {
-  height: 345px;   
-  background-color: var(--bg-color);
+  height: 345px;
+  background-color: var(--bg-color-white);
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -247,13 +249,82 @@ body {
 
 .welcome-info {
   color: var(--font-color);
-  background-color: var(--bg-color);
+  background-color: var(--bg-color-white);
   height: 287px;
   width: 390px;
 }
 
 .welcome-info h3 {
   padding-top: 16px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-/* --------------- */
+.welcome-info h3 span {
+  color: var(--blue);
+}
+
+.welcome-info h3 span:last-child {
+  color: rgb(0 84 129);
+}
+
+.welcome-info p {
+  margin: 0 16px 20px 16px;
+  font-weight: 400;
+  line-height: 19.5px;
+}
+
+
+/* Contact Info */
+
+.contact-info {
+  background-image: url('./assets/Image/Contact Info Images/caffe-picture.png');
+  height: 250px;
+  opacity: 40%;
+  color: var(--bg-color-white);
+}
+
+.contact-info p {
+  padding-top: 65px;
+  padding-left: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17.07px;
+  text-align: left;
+  opacity: 70%;
+}
+
+.contact-icons {
+  display: flex;
+  align-items: center;
+}
+
+.contact-icons img {
+  padding-left: 16px;
+  opacity: 70%;
+}
+
+.contact-icons p:last-child {
+  padding-top: 38px;
+  padding-left: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17.07px;
+}
+
+/* Footer Section */
+
+.footer {
+  height: 40px;
+  background-color: var(--bg-color-white);
+}
+
+.footer p {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14.63px;
+  padding-top: 13px;
+  opacity: 70%;
+  color: rgba(11, 52, 74, 1);
+}
