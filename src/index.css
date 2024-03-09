@@ -7,6 +7,8 @@
   --bg-color-white: rgba(255, 255, 255, 1);
   --blue: rgba(36, 140, 197, 1);
   --btn-color-dark: rgba(22, 72, 100, 1);
+  --bg-color-light-blue: rgba(204, 233, 250, 1);
+  --font-color-light-black: rgba(37, 37, 37, 1);
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -103,7 +105,7 @@ body {
 /* Coffee Menu Section */
 
 .coffee-menu-section {
-  background-color: rgba(204, 233, 250, 1);
+  background-color: var(--bg-color-light-blue);
   width: 100%;
 }
 
@@ -366,6 +368,7 @@ width: 124px;
 height: 40px;
 border-radius: 10px;
 background-color: var(--btn-color-dark);
+color: var(--bg-color-white);
 cursor: pointer;
 }
 
@@ -378,4 +381,141 @@ color: var(--btn-color-dark);
 background-color: var(--bg-color-white);
 margin-bottom: 20px;
 cursor: pointer;
+}
+
+.notRegistredBackground {
+  position: fixed;
+  inset: 0;
+  width: 390px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+}
+
+.notRegistred {
+  position: fixed;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  width: 352px;
+  height: 236px;
+  background-color: var(--bg-color-white);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notRegistred label:first-child p {
+  width: 281px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.5px;
+  color: var(--font-color-light-black);
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.notRegistred label:first-child button {
+  width: 124px;
+  height: 40px;
+  background-color: var(--btn-color-dark);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.5px;
+  color: var(--bg-color-white);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.notRegistred label p {
+  width: 281px;
+  height: 20px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.5px;
+  color: rgba(37, 37, 37, 1);
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
+
+.notRegistred label:last-child button {
+  width: 124px;
+  height: 40px;
+  border: 1px solid var(--btn-color-dark);
+  color: var(--btn-color-dark);
+  background-color: var(--bg-color-white);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.5px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+#loginSection {
+  position: fixed;
+  inset: 0;
+  width: 390px;
+  z-index: 10;
+  background-color: var(--bg-color-light-blue);
+  margin: 0 auto;
+}
+
+#loginSection img {
+  width: 200px;
+  height: 60px;
+  margin: 32px auto;
+}
+
+#loginSection h3 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.38px;
+  color: var(--font-color-light-black);
+  margin-bottom: 23px;
+}
+
+#loginSection label {
+  position: relative;
+}
+
+#loginSection h5 {
+  color: var(--font-color-light-black);
+  position: absolute;
+  left: 8px;
+}
+
+#loginSection input {
+  width: 318px;
+  height: 50px;
+  border: 1px solid rgba(37, 37, 37, 0.5);
+  border-radius: 10px;
+  background-color: var(--bg-color-white);
+  padding: 16px 161px 12px 34px;
+  font-weight: 400;
+  line-height: 21.94px;
+}
+
+#loginSection p {
+  color: var(--font-color);
+  font-size: 16px;
+  line-height: 19.5px;
+  text-decoration: underline;
+  margin: 16px auto 40px auto;
+}
+
+#loginSection button {
+  width: 318px;
+  height: 50px;
+  border-radius: 10px;
+  font-weight: 700;
+  line-height: 21.94px;
+  color: var(--bg-color-white);
+  background-color: var(--btn-color-dark);
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
 }
