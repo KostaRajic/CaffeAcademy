@@ -16,7 +16,7 @@ export const Header = () => {
             <div className='right-side'>
                 <img onClick={() => {
                     
-                    {setloginModal(true) && <NotRegistredComp />}
+                    setloginModal(true) || <NotRegistredComp onClose={loginModal}/>
                 }} 
                 src={profile} alt='Profile Logo' />
                 { loginModal && <LoginInRegistrationPopUp closeModal={setloginModal}/> }
