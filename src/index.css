@@ -9,6 +9,7 @@
   --btn-color-dark: rgba(22, 72, 100, 1);
   --bg-color-light-blue: rgba(204, 233, 250, 1);
   --font-color-light-black: rgba(37, 37, 37, 1);
+  --font-color-error: rgba(248, 19, 46, 1);
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -350,8 +351,10 @@ body {
 
 .loginPopUpModal {
   position: fixed;
-  inset: 50%;
-  transform: translate(-50%, -50%);
+  /* inset: 50%; */
+  /* transform: translate(-50%, -50%); */
+  left: 428px;
+  top: 57px;
   width: 164px;
   height: 130px;
   background-color: var(--bg-color-white);
@@ -534,6 +537,7 @@ input {
   padding: 16px 161px 12px 34px;
   font-weight: 400;
   line-height: 21.94px;
+  color: var(--font-color)
 }
 
 input::placeholder {
@@ -596,10 +600,34 @@ input::placeholder {
   z-index: 15;
 }
 
+#registrationSection label:nth-child(1) h5::before {
+  content: '';
+  display: block;
+  width: 54px;
+  height: 1px;
+  background: white;
+  position: absolute;
+  top: 8px;
+  z-index: -1;
+  left: -10px;
+  }
+
+  #registrationSection label:nth-child(2) h5::before {
+    content: '';
+    display: block;
+    width: 85px;
+    height: 1px;
+    background: white;
+    position: absolute;
+    top: 8px;
+    z-index: -1;
+    left: -10px;
+    }
+
 #registrationSection label:nth-child(3) h5::before {
 content: '';
 display: block;
-width: 54px;
+width: 71px;
 height: 1px;
 background: white;
 position: absolute;
@@ -623,7 +651,7 @@ left: -10px;
 #registrationSection label:nth-child(5) h5::before {
 content: '';
 display: block;
-width: 71px;
+width: 136px;
 height: 1px;
 background: white;
 position: absolute;
@@ -631,30 +659,6 @@ top: 8px;
 z-index: -1;
 left: -10px;
 }
-
-#registrationSection label:nth-child(6) h5::before {
-content: '';
-display: block;
-width: 82px;
-height: 1px;
-background: white;
-position: absolute;
-top: 8px;
-z-index: -1;
-left: -10px;
-}
-
-#registrationSection label:nth-child(7) h5::before {
-  content: '';
-  display: block;
-  width: 136px;
-  height: 1px;
-  background: white;
-  position: absolute;
-  top: 8px;
-  z-index: -1;
-  left: -10px;
-  }
 
   #registrationSection button {
     width: 318px;
@@ -684,6 +688,15 @@ left: -10px;
     font-size: 16px;
     line-height: 19.5px;
     color: var(--btn-color-dark);
+  }
+
+  #registrationSection .errorMsg {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14.63px;
+    color: var(--font-color-error);
+    margin: 0 0 0 38px;
+    text-align: left;
   }
 
 
@@ -719,9 +732,7 @@ left: -10px;
     cursor:text;
   }
 
-  input {
-    color: var(--font-color);
-  }
+
 
   #forgottenPasswordSection label {
     margin: 0;
@@ -1068,3 +1079,14 @@ left: -10px;
   border: none;
   cursor: pointer;
 }
+
+error {
+  color: var(--font-color-error);
+  font-size: 12px;
+  line-height: 14.63px;
+  font-weight: 500;
+  text-align: left;
+  display: flex;
+  margin-left: 38px;
+}
+

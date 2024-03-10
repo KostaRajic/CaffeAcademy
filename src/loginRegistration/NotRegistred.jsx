@@ -10,6 +10,7 @@ import { Registration } from "./Registration";
 
 export function NotRegistredComp({closeModal}) {
     const [showLogin, setShowLogin] = useState(false);
+    const [showRegisteration, setShowRegisteration] = useState(false)
 
 
     return <div className="notRegistredBackground">
@@ -17,15 +18,15 @@ export function NotRegistredComp({closeModal}) {
         <label>
             <p>Za poručivanje potrebno je da se prijavis na svoj nalog.</p>
             <button onClick={() => setShowLogin(true)}>PRIJAVI SE</button>
-            {showLogin && <Login />}
+            
         </label>
         <label>
             <p>Još uvek nemaš nalog?</p>
-            <button  onClick={() => setShowLogin(true)}>REGISTRUJ SE</button>
-            { showLogin && <Registration />}
+            <button  onClick={() => setShowRegisteration(true)}>REGISTRUJ SE</button>
+            
         </label>
         </div>
-
-       
+        { showLogin && <Login />}
+        { showRegisteration && <Registration />}
     </div>
 }

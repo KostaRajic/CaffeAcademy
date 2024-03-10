@@ -13,9 +13,13 @@ export function LoginInRegistrationPopUp({closeModal}) {
        
         <div className="loginPopUpModal">
             <button className="logIn" onClick={() => setShowLogin(true)}>PRIJAVI SE</button>
+            
             <button className="register" onClick={() => setShowRegisteration(true)}>REGISTRUJ SE</button>
+            
+         
         </div>
-        {showLogin && <Login/>}
-        {showRegisteration && <Registration />}
+            {showLogin && <Login/>}
+            {showRegisteration && <Registration />}
+        
     </div>
 }

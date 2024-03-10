@@ -22,17 +22,19 @@ export const HomePage = () => {
 
     
     return <div>
-                
+            
         <Header />
+        
         <div onClick={() => setNotRegistred(true)}>
-        { notRegistred && <NotRegistredComp />}
             <HeroSection />
+            
             <CoffeeMenu/>
 
             <SpecialSelection />
             <WelcomeInfo />
             <ContactInfo />
             <Footer />
+            { notRegistred && <NotRegistredComp />}
         </div>
         {/* <Login /> */}
         {/* <Registration /> */}
