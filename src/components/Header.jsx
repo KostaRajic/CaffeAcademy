@@ -14,11 +14,16 @@ export const Header = () => {
         <header className="header">
             <img src={logo} alt='Academy Logo' />
             <div className='right-side'>
+           
                 <img onClick={() => {
+
                     
-                    setloginModal(true) || <NotRegistredComp onClose={loginModal}/>
-                }} 
+                    setloginModal(true);
+                    // <NotRegistredComp closeModal={handleShow}/>
+                }}
+        
                 src={profile} alt='Profile Logo' />
+                   
                 { loginModal && <LoginInRegistrationPopUp closeModal={setloginModal}/> }
                 <div style={{display: 'none'}} className='coffee-img'>
                     <img src={coffeeToGo} alt='Coffee to go Logo' />

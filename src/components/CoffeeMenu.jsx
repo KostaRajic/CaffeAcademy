@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import cupOfCoffee from '../assets/Image/Main Section Images/cup-of-coffee.png'
 import plus from '../assets/Image/Main Section Images/plus.png'
+import { NotRegistredComp } from '../loginRegistration/NotRegistred';
 
 export const CoffeeMenu = () => {
 
@@ -189,6 +191,7 @@ export const CoffeeMenu = () => {
                 <button type='submit'><img src={plus} alt="Plus" /></button>
             </div>
         </div>
+
     </section >
 
 }
