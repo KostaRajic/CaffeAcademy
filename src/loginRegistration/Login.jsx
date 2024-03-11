@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { ForgottenPassword } from './ForgottenPassword'
@@ -6,7 +7,7 @@ export const Login = ({closeModal}) => {
    const [forgotPassword, setForgotPassword] = useState(false)
 
     return <div id="loginSection">
-         <img src={AcademyImg} alt="AcademyImg" />
+         <img src={AcademyImg} alt="AcademyImg" onClick={() => closeModal(false)}/>
          <h3>Prijavi se</h3>
          <label htmlFor="e-mail">
             <h5 className='email'>E-mail</h5>

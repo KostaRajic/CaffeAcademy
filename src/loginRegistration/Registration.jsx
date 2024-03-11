@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -7,7 +8,7 @@ import { useEffect, useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { Login } from './Login';
 
-export const Registration = () => {
+export const Registration = ({closeModal}) => {
         const [ showLogin, setShowLogin ] = useState(false);
         const [ formData, setFormData ] =useState({
                 name: '',
@@ -31,14 +32,9 @@ export const Registration = () => {
                 e.preventDefault()
                 localStorage.setItem('user', JSON.stringify(formData))
                 setFormErrors(validate(formData));
-                setIsSubmit(true)
+                // setIsSubmit(true)
         }
 
-        useEffect(() => {
-                if( Object.keys(formErrors).length === 0 && isSubmit) {
-                        console.log(formData)
-                }
-        }, [formErrors])
 
         const validate = (values) => {
                 const errors = {};
@@ -64,7 +60,7 @@ export const Registration = () => {
 
 
     return  <div id="registrationSection">
-        <img src={AcademyImg} alt="AcademyImg" />
+        <img src={AcademyImg} alt="AcademyImg" onClick={() => closeModal(false)}/>
         <h3>Registruj se</h3>
         
         <form onSubmit={handleSubmit}>

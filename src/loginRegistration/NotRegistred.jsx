@@ -8,7 +8,7 @@ import { Login } from "./Login";
 import { Registration } from "./Registration";
 
 
-export function NotRegistredComp({closeModal}) {
+export function NotRegistredComp({closeModal, onClose}) {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegisteration, setShowRegisteration] = useState(false)
 
@@ -26,7 +26,7 @@ export function NotRegistredComp({closeModal}) {
             
         </label>
         </div>
-        { showLogin && <Login />}
-        { showRegisteration && <Registration />}
+        { showLogin && <Login closeModal={setShowLogin}/>}
+        { showRegisteration && <Registration closeModal={setShowRegisteration}/>}
     </div>
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import { useState } from "react"
 import { Login } from "./Login"
@@ -13,13 +14,12 @@ export function LoginInRegistrationPopUp({closeModal}) {
        
         <div className="loginPopUpModal">
             <button className="logIn" onClick={() => setShowLogin(true)}>PRIJAVI SE</button>
-            
             <button className="register" onClick={() => setShowRegisteration(true)}>REGISTRUJ SE</button>
             
          
         </div>
-            {showLogin && <Login/>}
-            {showRegisteration && <Registration />}
+            {showLogin && <Login closeModal={setShowLogin}/>}
+            {showRegisteration && <Registration closeModal={setShowRegisteration}/>}
         
     </div>
 }

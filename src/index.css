@@ -350,11 +350,8 @@ body {
 }
 
 .loginPopUpModal {
-  position: fixed;
-  /* inset: 50%; */
-  /* transform: translate(-50%, -50%); */
-  left: 428px;
-  top: 57px;
+  margin-left: 225px;
+  margin-top: 57px;
   width: 164px;
   height: 130px;
   background-color: var(--bg-color-white);
@@ -473,6 +470,7 @@ cursor: pointer;
   width: 200px;
   height: 60px;
   margin: 32px auto;
+  cursor: pointer;
 }
 
  h3 {
@@ -487,12 +485,13 @@ cursor: pointer;
   position: relative;
 }
 
+
 #loginSection .email {
   color: var(--font-color-light-black);
   position: absolute;
   margin-left: 70px;
   bottom: 27px;
-  z-index: 15;
+  z-index: 16;
 }
 
 #loginSection .email::before {
@@ -544,6 +543,8 @@ input::placeholder {
   color: rgba(0, 0, 0, 0.4);
   font-weight: 400;
   font-size: 18px;
+  line-height: 21.94px;
+  
 }
 
 #loginSection p {
@@ -589,6 +590,7 @@ input::placeholder {
   width: 200px;
   height: 60px;
   margin: 32px auto;
+  cursor: pointer;
   }
 
 #registrationSection h5 {
@@ -795,7 +797,7 @@ left: -10px;
     position: fixed;
     inset: 0;
     width: 390px;
-    z-index: 10;
+    z-index: 17;
     background-color: var(--bg-color-light-blue);
     margin: 0 auto;
 }
@@ -804,6 +806,18 @@ left: -10px;
   width: 200px;
   height: 60px;
   margin: 32px auto;
+}
+
+
+#createNewPasswordSection h3 {
+  margin-bottom: 24px;
+}
+
+#createNewPasswordSection input::placeholder {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.94px;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 #createNewPasswordSection button {
