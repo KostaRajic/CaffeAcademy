@@ -21,30 +21,19 @@ export const HomePage = () => {
     const [notRegistred, setNotRegistred] = useState(false);
 
     
-    return <div>
-            
-        <Header />
-        
+    return <div >            
+            <Header />
         <div onClick={() => setNotRegistred(true)}>
+        { notRegistred && <NotRegistredComp />}
             <HeroSection />
             
             <CoffeeMenu/>
-
             <SpecialSelection />
             <WelcomeInfo />
             <ContactInfo />
             <Footer />
-            { notRegistred && <NotRegistredComp />}
+            
         </div>
-        {/* <Login /> */}
-        {/* <Registration /> */}
-        {/* <ForgottenPassword /> */}
-        {/* <CreateNewPassword /> */}
-        {/* <PasswordError /> */}
-        {/* <PasswrodSuccess /> */}
-        {/* <ConfirmEmail /> */}
-        {/* <ConfiredEmail /> */}
-
     </div>
 
 }

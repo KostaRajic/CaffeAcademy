@@ -2,29 +2,30 @@ import { useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { PasswrodSuccess } from './PasswordSuccess'
 import { Login } from './Login'
+import { PasswordError } from './PasswordError'
 
-export const CreateNewPassword = () => {
+export const CreateNewPassword = ({}) => {
    const [password, setPassword] = useState('');
    const [confirmPassword, setConfirmPassword] = useState('')
-
+   const [errorPassword, setErrorPassword] = useState(false)
 
    const [createPass, setCreatePass] = useState(false)
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      if (password === confirmPassword || password.length > 8 || password.toUpperCase().length < 1 || password.toLowerCase().length < 1 || typeof(password) !== 'number') {
-         setCreatePass(true)
+      if (password === confirmPassword) {
+         setCreatePass(!createPass)
+   } else if ( password.length > 8)
+         setErrorPassword(!errorPassword)
+
    }
-   }
-      
-   
+
     return <div id="createNewPasswordSection">
          <img src={AcademyImg} alt="AcademyImg" />
          <h3>Kreiraj novu lozinku</h3>
 
          <form onSubmit={handleSubmit}>
-
-               {createPass && <PasswrodSuccess />}
+  
             <label htmlFor="password">
                <h5>Nova Lozinka*</h5>
                <input type='text' value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Nova Lozinka" id='password'/>
@@ -32,11 +33,14 @@ export const CreateNewPassword = () => {
 
             <label htmlFor="password">
                <h5>Ponovi Novu Lozinku*</h5>
-               <input type='text' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Lozinka" id='password'/>
+               <input type='text' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Lozinka" id='confirmPassword'/>
             </label>
 
             <button type='submit'>Kreiraj</button>
          </form>
+
+         {createPass && <PasswrodSuccess/>}
+         {errorPassword && <PasswordError />}
 
         </div>
 }

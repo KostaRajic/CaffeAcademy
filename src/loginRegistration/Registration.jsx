@@ -7,8 +7,11 @@
 import { useEffect, useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { Login } from './Login';
+import { HomePage } from '../pages/HomePage';
+import { ConfiredEmail } from './ConfirmedE-mail';
+import { ConfirmEmail } from './ConfirmE-mail';
 
-export const Registration = ({closeModal}) => {
+export const Registration = ({onClose}) => {
         const [ showLogin, setShowLogin ] = useState(false);
         const [ formData, setFormData ] =useState({
                 name: '',
@@ -17,8 +20,9 @@ export const Registration = ({closeModal}) => {
                 password: '',
                 confirmPassword: ''
         })
-        const [formErrors, setFormErrors] = useState({})
-        const [isSubmit, setIsSubmit] = useState(false)
+        const [formErrors, setFormErrors] = useState({});
+        const [goBackImg, setGoBackImg] = useState(false)
+        const [confirmEmail, setConfirmEmail] = useState(false);
 
         const handleChange = (e) => {
                 const {name, value} = e.target;
@@ -32,6 +36,7 @@ export const Registration = ({closeModal}) => {
                 e.preventDefault()
                 localStorage.setItem('user', JSON.stringify(formData))
                 setFormErrors(validate(formData));
+                setConfirmEmail(!confirmEmail)
                 // setIsSubmit(true)
         }
 
@@ -40,16 +45,23 @@ export const Registration = ({closeModal}) => {
                 const errors = {};
 
                 if (values.name.length > 20) {
-                        errors.name = 'Ime može da sadrži najviše 20 znakova alfabeta.'
+                        errors.name = 'Ime mora da sadrži najviše 20 znakova alfabeta.'
                 }
                 if (values.lastName.length > 20) {
-                        errors.lastName = 'Prezime može da sadrži najviše 20 znakova alfabeta.'
+                        errors.lastName = 'Prezime mora da sadrži najviše 20 znakova alfabeta.'
                 }
                 if (!values.email.includes('@')) {
                         errors.email = 'Pogrešan format e-mail adrese.'
                 }
-                if (values.password.length > 8 && values.password.toUpperCase().length < 1 && values.password.toLowerCase().length < 1 && typeof(values.password.value) !== 'number') {
-                        errors.password = 'Lozinka može da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'   
+
+                let newVal = values.password.split('');
+
+                // newVal.forEach((letter) => {
+                // if (!Number(letter)) {
+                //         errors.password = 'Lozinka može da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+                // }})
+                if (values.password.length > 8) {
+                        errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'   
                 }
                 if (values.password !== values.confirmPassword) {
                         errors.confirmPassword = 'Lozinke se ne podudaraju.'
@@ -60,49 +72,53 @@ export const Registration = ({closeModal}) => {
 
 
     return  <div id="registrationSection">
-        <img src={AcademyImg} alt="AcademyImg" onClick={() => closeModal(false)}/>
-        <h3>Registruj se</h3>
+        <img id='imgId' src={AcademyImg} alt="AcademyImg" onClick={() => setGoBackImg(!goBackImg)}/>
         
+        <h3>Registruj se</h3>
+
         <form onSubmit={handleSubmit}>
                 <label htmlFor="name">
                         <h5>Ime*</h5>
                         <input type='text' name='name' value={formData.name} onChange={handleChange} placeholder="Ime" id='name' required/>
-                        <p className='errorMsg'>{formErrors.name}</p>
+                        {formErrors.name && <p className='errorMsg'>{formErrors.name}</p>}
                 </label>
                 
                 <label htmlFor="lastName">
                         <h5>Prezime*</h5>
                         <input type='text' name='lastName' value={formData.lastName} onChange={handleChange} placeholder="Prezime" id='password' required/>
-                        <p className='errorMsg'>{formErrors.lastName}</p>
+                        {formErrors.lastName && <p className='errorMsg'>{formErrors.lastName}</p>}
                 </label>
              
                 <label htmlFor="e-mail">
                         <h5>E-mail*</h5>
                         <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder="E-mail adresa" id='e-mail' required/>
-                        <p className='errorMsg'>{formErrors.email}</p>
+                        {formErrors.email && <p className='errorMsg'>{formErrors.email}</p>}
                 </label>
 
                 <label htmlFor="password">
                         <h5>Lozinka*</h5>
                         <input type='password' name='password' value={formData.possword} onChange={handleChange} placeholder="Lozinka" id='password' required/>
-                        <p className='errorMsg'>{formErrors.password}</p>
+                        {formErrors.password && <p className='errorMsg'>{formErrors.password}</p>}
                 </label>
 
                 <label htmlFor="confirmPassword">
                         <h5>Ponovi Lozinku*</h5>
                         <input type='password' name='confirmPassword' value={formData.confirmPassword} onChange={handleChange} placeholder="Ponovi Lozinku" id='confirmPassword' required/>
-                        <p className='errorMsg'>{formErrors.confirmPassword}</p>
+                        {formErrors.confirmPassword && <p className='errorMsg'>{formErrors.confirmPassword}</p>}
                 </label>
-        
+                
     <button type='submit'>Registruj se</button>
-
+        
     </form>
 
     <p>Imaš nalog? <span  
-    onClick={() => setShowLogin(true)}
+    onClick={() => setShowLogin(!showLogin)}
     style={{cursor: 'pointer'}}
     >Prijavi se.</span></p>
+        
+        {goBackImg && <HomePage />}
+        {confirmEmail && <ConfirmEmail />}
+        {showLogin && <Login />}
 
-    {showLogin && <Login />}
 </div>
 }

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { Login } from './Login';
 import { CreateNewPassword } from './CreateNewPassword';
+import { HomePage } from '../pages/HomePage';
 
 export const ForgottenPassword = () => {
     const [showLogin, setShowLogin] = useState(false);
@@ -28,10 +29,9 @@ export const ForgottenPassword = () => {
         console.log(lsUser)
         
 }
-
     
     return <div id="forgottenPasswordSection">
-    <img src={AcademyImg} alt="AcademyImg" />
+    <img id='imgId' src={AcademyImg} alt="AcademyImg" />
     <h3>Zaboravljena lozinka?</h3>
     <p>Unesi e-mail adresu korišćenu prilikom registracije, 
         a mi ćemo ti poslati instrukcije za kreiranje nove lozinke.</p>
@@ -47,9 +47,11 @@ export const ForgottenPassword = () => {
     </form>
 
     <p>Vrati se na <span 
-            onClick={() => setShowLogin(true)}
+            onClick={() => setShowLogin(!showLogin)}
             style={{cursor: 'pointer'}}
         >Prijavu.</span></p>
-        {showLogin && <Login />}
+
+       
+        {showLogin && <Login/>}
     </div>
 }
