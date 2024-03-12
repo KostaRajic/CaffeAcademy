@@ -28,9 +28,8 @@ export const Login = ({closeModal}) => {
       e.preventDefault();
       const lsUser = JSON.parse(localStorage.getItem('user'));
         if (lsUser.email === user.email && lsUser.password === user.password) {
-            
-         console.log('loginSuccess ', loginSuccess);
-            setLoginSucces(!loginSuccess)
+            {setLoginSucces(!loginSuccess)}
+            console.log('Login Succes')
             
         }
    }
@@ -60,7 +59,6 @@ export const Login = ({closeModal}) => {
          </form>
 
          {loginSuccess && <RegistredHomePage />}
-
          {goBackImg && <HomePage />}
 
          {forgotPassword && <ForgottenPassword />}
