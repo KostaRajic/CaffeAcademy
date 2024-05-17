@@ -1,11 +1,22 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
-import { Login } from './Login'
-import { ConfiredEmail } from './ConfirmedE-mail'
+import { ConfirmedEmail } from './ConfirmedE-mail'
 
-export const ConfirmEmail = () => {
-    const [goBack, setGoBack] = useState(false)
-    console.log(goBack)
+
+export const ConfirmEmail = ({confirmEmailGoBack}) => {
+    const [ confirmEmail, setConfirmEmail ] = useState(false)
+
+    function handleConfirm() {
+        //closeRegiser('zz')
+        setConfirmEmail(true)
+        
+    }
+
+    // const closeConfirm = (e) => {
+    //    e == 'close-confirm' ? setConfirmEmail(false) : setConfirmEmail(true)
+    //    confirmEmailGoBack('confirmEmail')
+    // }
 
     return <div id='confirmEmail'>
     <img src={AcademyImg} alt="AcademyImg" />
@@ -13,7 +24,8 @@ export const ConfirmEmail = () => {
         <h3>Potvrdite e-mail adresu</h3>
         <p>Molimo vas potvrdite vašu e-mail adresu.</p>
     </div>
-    <button onClick={() => setGoBack(!goBack)}>U redu</button>
-    {goBack && <ConfiredEmail/>}
+    <button onClick={handleConfirm}>U redu</button>
+
+    { confirmEmail && <ConfirmedEmail/>}
 </div>
 }

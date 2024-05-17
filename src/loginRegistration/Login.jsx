@@ -1,67 +1,85 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
-import { ForgottenPassword } from './ForgottenPassword'
-import { HomePage } from '../pages/HomePage'
-import App from '../App'
+import { ForgottenPassword } from '../loginRegistration/ForgottenPassword'
+import { useContextAuth } from '../context/ModalContext'
 import { RegistredHomePage } from '../pages/RegistredHomePage'
 
 
-export const Login = ({closeModal}) => {
-   const [forgotPassword, setForgotPassword] = useState(false)
-   const [goBackImg, setGoBackImg] = useState(false);
+export const Login = (props) => {
+   // const [ showModal2, setShowModal2 ] = useContext(Context2)
+   // const [ showModal, setShowModal ] = useContext(Context3)
+   // const [ isLoggedIn, setIsLoggedIn ] = useContext(Context);
+   const [ showModal, setShowModal, showModal2, setShowModal2, isLoggedIn, setIsLoggedIn ] = useContextAuth();
+   // console.log('show modal2', showModal2)
+   // console.log('show modal', showModal)
+   console.log('isLoggedIn', isLoggedIn)
+   const [ forgottenPassword, setForgottenPassword ] = useState(false)
    const [user, setUser] = useState({
       email: '',
       password: ''
    })
-   const[loginSuccess, setLoginSucces] = useState(false)
 
    const handleChange = (e) => {
-      setUser((prev) => ({
-         ...prev,
-         [e.target.name]: e.target.value
-   }))   
-   }
+       setUser((prev) => ({
+          ...prev,
+          [e.target.name]: e.target.value
+    }))   
+    }
+
 
    function handleSubmit(e) {
-      e.preventDefault();
-      const lsUser = JSON.parse(localStorage.getItem('user'));
-        if (lsUser.email === user.email && lsUser.password === user.password) {
-            {setLoginSucces(!loginSuccess)}
-            console.log('Login Succes')
-            
-        }
+       e.preventDefault();
+       const lsUser = JSON.parse(localStorage.getItem('user'));
+         if (lsUser.email === user.email && lsUser.password === user.password) {
+            setIsLoggedIn(true)
+         }
+    }
+
+   const handleWithForgottenPass = () => {
+      setForgottenPassword(!forgottenPassword)
    }
-   // console.log('forgotPassword ', forgotPassword);
-   console.log('goBackImg ',  goBackImg)
+
+   const handleGoBack = (e) => {
+      setShowModal2(false)
+      setShowModal(false)
+   }
+
+   const backFromForgotten = (state) => {
+      state === 'goBack' ? setForgottenPassword(false) : setForgottenPassword(true)
+   }
 
     return <div id="loginSection">
-      
-         <img src={AcademyImg} alt="AcademyImg" onClick={() => setGoBackImg(!goBackImg)}/>
-         
+
+         <img
+         src={AcademyImg} 
+         alt="AcademyImg"
+         onClick={handleGoBack}
+         />
+        
          <h3>Prijavi se</h3>
 
          <form onSubmit={handleSubmit}>
          
-         <label>
-            <h5  className='loginEmail'>E-mail</h5>
-            <input type='email' name='email' placeholder="E-mail adresa" value={user.email} onChange={handleChange}/>
-         </label>
+            <label>
+               <h5>E-mail</h5>
+               <div></div>
+               <input type='email' name='email' placeholder="E-mail adresa" value={user.email} onChange={handleChange}/>
+            </label>
 
-         <label>
-            <h5 className='password'>Lozinka</h5>
-            <input type='password' name='password' placeholder="Lozinka" id='password' value={user.password}  onChange={handleChange}/>
-         </label>
-         <p onClick={() => setForgotPassword(!forgotPassword)}>Zaboravljena lozinka?</p>
-         <button type='submit'>Prijavi Se</button>
-         
+            <label>
+               <h5>Lozinka</h5>
+               <div></div>
+               <input type='password' name='password' placeholder="Lozinka" id='password' value={user.password}  onChange={handleChange}/>
+            </label>
+            <p onClick={handleWithForgottenPass}>Zaboravljena lozinka?</p>
+            <button type='submit'>Prijavi Se</button>
          </form>
-
-         {loginSuccess && <RegistredHomePage />}
-         {goBackImg && <HomePage />}
-
-         {forgotPassword && <ForgottenPassword />}
-
+         {forgottenPassword && <ForgottenPassword backFromForgotten={(e) => backFromForgotten(e)}/>}
+         { isLoggedIn && <RegistredHomePage />}
     </div>
 }

@@ -1,4 +1,7 @@
-import { useState } from "react"
+/* eslint-disable no-redeclare */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
+
 import { CoffeeMenu } from "../components/CoffeeMenu"
 import { ContactInfo } from "../components/ContactInfo"
 import { Footer } from "../components/Footer"
@@ -6,34 +9,33 @@ import { Header } from "../components/Header"
 import { HeroSection } from "../components/HeroSection"
 import { SpecialSelection } from "../components/SpecialSelection"
 import { WelcomeInfo } from "../components/WelcomeInfo"
-import { NotRegistredComp } from "../loginRegistration/NotRegistred"
-import { Login } from "../loginRegistration/Login"
-import { Registration } from "../loginRegistration/Registration"
-import { LoginInRegistrationPopUp } from "../loginRegistration/LoginInRegistrationPopUp"
-import { ForgottenPassword } from "../loginRegistration/ForgottenPassword"
-import { CreateNewPassword } from "../loginRegistration/CreateNewPassword"
-import { PasswordError } from "../loginRegistration/PasswordError"
-import { PasswrodSuccess } from "../loginRegistration/PasswordSuccess"
-import { ConfirmEmail } from "../loginRegistration/ConfirmE-mail"
-import { ConfiredEmail } from "../loginRegistration/ConfirmedE-mail"
+import { useContextAuth } from "../context/ModalContext"
+import { NotRegistredComp } from "../loginRegistration/NotRegistred";
 
-export const HomePage = () => {
-    const [notRegistred, setNotRegistred] = useState(false);
 
-    
-    return <div >            
-            <Header />
-        <div onClick={() => setNotRegistred(true)}>
-        { notRegistred && <NotRegistredComp />}
-            <HeroSection />
-            
-            <CoffeeMenu/>
-            <SpecialSelection />
-            <WelcomeInfo />
-            <ContactInfo />
-            <Footer />
-            
-        </div>
+export const HomePage = ({closeModal}) => {
+
+    const [ showModal,  setShowModal, showModal2, setShowModal2 ] = useContextAuth(false)
+
+    const handleLogin = () => {
+        showModal ? setShowModal(false) : setShowModal2(true)
+    }
+
+    function closeModal(state) {
+        state === 'goBack' ? setShowModal2(false) : setShowModal2(true)
+    }
+
+    return <div>    
+                        <Header />
+                        <div onClick={handleLogin}>
+                        <HeroSection />
+                        <CoffeeMenu />
+                        <SpecialSelection />
+                        <WelcomeInfo />
+                        <ContactInfo />
+                        <Footer />
+                        </div>
+                
+                { showModal2 && <NotRegistredComp  handleLoginModal={(e) => closeModal(e)} />}      
     </div>
-
 }

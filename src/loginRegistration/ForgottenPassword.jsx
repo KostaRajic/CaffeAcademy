@@ -1,23 +1,26 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-empty */
 import { useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
-import { Login } from './Login';
-import { CreateNewPassword } from './CreateNewPassword';
-import { HomePage } from '../pages/HomePage';
+import { CreateNewPassword } from '../loginRegistration/CreateNewPassword'
 
-export const ForgottenPassword = () => {
-    const [showLogin, setShowLogin] = useState(false);
-    const [formData, setFormData] = useState({
+export const ForgottenPassword = ({backFromForgotten}) => {
+    const [ createPass, setCreatePass ] = useState(false)
+    const [ formData, setFormData ] = useState({
         email: ''
     });
-    const [createPass, setCreatePass] = useState(false);
 
     const handleChange = (e) => {
         setFormData((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
         }))
+    }
+
+    const handleBack = (state) => {
+        backFromForgotten('goBack')
+        state === 'goBack' ? setCreatePass(false) : setCreatePass(true)
     }
 
     const handleSubmit = (e) => {
@@ -37,9 +40,9 @@ export const ForgottenPassword = () => {
         a mi ćemo ti poslati instrukcije za kreiranje nove lozinke.</p>
 
     <form onSubmit={handleSubmit}>
-    {createPass && <CreateNewPassword />}
         <label htmlFor="e-mail">
             <h5>E-mail</h5>
+            <div></div>
             <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder="E-mail adresa" id='e-mail'/>
         </label>
         <button type='submit'>Pošalji</button>
@@ -47,11 +50,10 @@ export const ForgottenPassword = () => {
     </form>
 
     <p>Vrati se na <span 
-            onClick={() => setShowLogin(!showLogin)}
-            style={{cursor: 'pointer'}}
+        onClick={handleBack}
+        style={{cursor: 'pointer'}}
         >Prijavu.</span></p>
-
+    { createPass && <CreateNewPassword backFromCreate={(e) => handleBack(e)}/>}
        
-        {showLogin && <Login/>}
     </div>
 }

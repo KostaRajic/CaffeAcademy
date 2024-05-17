@@ -3,46 +3,56 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-
-import { useEffect, useRef, useState } from "react"
-import { Login } from "./Login";
+import { Login } from "./Login"
+import {useState, useEffect, useRef} from 'react';
 import { Registration } from "./Registration";
-import { HomePage } from "../pages/HomePage";
 
 
-export function NotRegistredComp({closeModal, onCLose}) {
+export function NotRegistredComp({ handleLoginModal }) {
     const [showLogin, setShowLogin] = useState(false);
-    const [showRegisteration, setShowRegisteration] = useState(false);
-    const [hideModal, setHideModal] = useState(false)
-    const refMethod = useRef(null);
-    // console.log('Show login = ', showLogin)
-    // console.log('showRegisteration = ', showRegisteration)
-    // console.log('hideModal = ', hideModal)
+    const [showRegister, setShowRegister] = useState(false);
+    const refMethod  = useRef(null);
+
+    const handleRegister = (state) => {
+        setShowRegister(!showRegister)
+    }
 
 
-    // useEffect(() => {
-    //     document.addEventListener('click', handleClickOutside, true)
-    // }, [])
+    const handleLogin = (z) => {
+        setShowLogin(!showLogin)
+    }
 
-    // const handleClickOutside = (e) => {
-    //     if(!refMethod.current.contains(e.target)) {
-    //         setHideModal(!hideModal)
-    //     }
-    // }
+    const tryFunction = (state) => {
+        handleLoginModal('goBack')
+    }
+    
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside, true);
+
+    return (() => {
+        document.removeEventListener('click', handleClickOutside, true);
+        })
+    }, [showLogin, showRegister])
+
+
+    const handleClickOutside = (e) => {
+        if( !showLogin && !showRegister && !refMethod?.current?.contains(e.target)) {
+            tryFunction()
+        }
+    }
 
     return <div className="notRegistredBackground">
-        <div className="notRegistred">
-            
+        <div className="notRegistred" ref={refMethod}>
+           
             <p>Za poručivanje potrebno je da se prijavis na svoj nalog.</p>
-            <button onClick={() => setShowLogin(!showLogin)}>PRIJAVI SE</button>
+            <button onClick={handleLogin}>PRIJAVI SE</button>
             
             <p>Još uvek nemaš nalog?</p>
-            <button  onClick={() => setShowRegisteration(!showRegisteration)}>REGISTRUJ SE</button>
+            <button onClick={handleRegister}>REGISTRUJ SE</button>
             
         </div>
-        {hideModal && <HomePage/>}
         { showLogin && <Login/> }
-        { showRegisteration && <Registration/> }
-    
+        { showRegister && <Registration />}
+
     </div>
 }
