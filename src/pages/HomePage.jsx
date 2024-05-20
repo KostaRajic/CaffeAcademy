@@ -23,7 +23,8 @@ export const HomePage = ({closeModal}) => {
 
     function closeModal(state) {
         state === 'goBack' ? setShowModal2(false) : setShowModal2(true)
-    }
+      }
+
 
     return <div>    
                         <Header />
@@ -35,7 +36,7 @@ export const HomePage = ({closeModal}) => {
                         <ContactInfo />
                         <Footer />
                         </div>
-                
-                { showModal2 && <NotRegistredComp  handleLoginModal={(e) => closeModal(e)} />}      
+                        
+                      { showModal2 && <NotRegistredComp  handleLoginModal={(e) => closeModal(e)} />}
     </div>
 }

@@ -36,7 +36,9 @@ export const Registration = () => {
 
         const handleSubmit = (e) => {
                 e.preventDefault()
-                setConfirmEmail(!confirmEmail)
+                if ((Object.keys(formErrors).length === 0 && isSubmit)) {
+                        setConfirmEmail(!confirmEmail)
+                }
                 setFormErrors(validate(formData))
                 setIsSubmit(true)
         }
@@ -44,12 +46,12 @@ export const Registration = () => {
         const handleBack = (e) => {
                 setShowModal(false)
                 setShowModal2(false);
-                
         }
 
         const handleCloseRegister = () => {
                 setShowLogin(true)
         }
+
 
         useEffect(() => {
                 console.log('formError', formErrors)
@@ -74,6 +76,7 @@ export const Registration = () => {
 
         const validate = (values) => {
                 const errors = {};
+
                 if (!values.name) { 
                         errors.name = 'Ime je neophodno.'
                 } else if (!values.lastName) {
@@ -94,33 +97,17 @@ export const Registration = () => {
                 // if (!values.email.includes('@')) {
                 //         errors.email = 'Pogrešan format e-mail adrese.'
                 // }
-                else if (values.password.split('').some(e => e !== e.toLowerCase())) {
+                else if (values.password.split('').every(e => e !== e.toLowerCase())) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-                } else if (values.password.split('').some(e => e !== e.toUpperCase())) {
+                } else if (values.password.split('').every(e => e !== e.toUpperCase())) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-                } else if (values.password.split('').find(e => /\d/.test(e))) {
-                        //errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+                } else if (values.password.split('').map(e => Number(e)).every(e => isNaN(e))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-                        console.log('Nema broj')
-                }
-
-        //         let newVal = values.password.split('');
-
-        //         newVal.some((val) => !isNaN(val)) ? console.log('Ima jedan broj') :
-        //         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-
-        //         newVal.some((val) => val == val.toLowerCase()) ? console.log('ima jedno malo slovo') : 
-        //         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-
-        //         newVal.some((val) => val == val.toUpperCase()) ? console.log('Ima jedno veliko slovo') : 
-        //         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-
-        //         if (values.password.length < 8) {
-        //                 errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'   
-        //         }
-        //         if (values.password !== values.confirmPassword) {
-        //                 errors.confirmPassword = 'Lozinke se ne podudaraju.'
-        // }
+                } else if (values.password.length < 8) {
+                        errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'   
+                } else if (values.password !== values.confirmPassword) {
+                        errors.confirmPassword = 'Lozinke se ne podudaraju.'
+        }
         return errors    
 
 }
@@ -174,7 +161,8 @@ export const Registration = () => {
     style={{cursor: 'pointer'}}
     onClick={handleCloseRegister}
     >Prijavi se.</span></p>
-        { showLogin && <Login goBackFunction={(e) => goHomePage(e)}/>}
+
+        { showLogin && <Login /> } 
         { confirmEmail && <ConfirmEmail confirmEmailGoBack={(e) => confirmEmailGoBack(e)}/> }
 </div>
 }

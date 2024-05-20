@@ -74,24 +74,10 @@ body {
   margin-right: 18px;
 }
 
-/* .right-side div:last-child {
-  margin-right: 18px;
-} */
-
-/* .right-side>img {
-  margin-right: 18px;
-} */
-
-/* .header div img:last-child {
-  position: absolute;
-  right: 18x;
-  margin-top: -3px;
-} */
-
 /* Hero Section */
 
 .hero-section {
-  /* position: relative; */
+  position: relative;
   height: 256px;
 
 }
@@ -498,8 +484,8 @@ cursor: pointer;
     height: 1px;
     background: white;
     margin-left: 63px;
-    z-index: 10;
-    position: absolute;
+    /* z-index: 10;
+    position: absolute; */
 }
 
 #loginSection label:nth-child(2) div {
@@ -507,7 +493,7 @@ cursor: pointer;
   width: 60px;
   height: 1px;
   background: white;
-  position: absolute;
+  /* position: absolute; */
   width: 70px;
 }
 
@@ -516,18 +502,20 @@ cursor: pointer;
   color: var(--font-color-light-black);
   z-index: 15;
   text-align: left;
-  position: absolute;
+  /* position: absolute; */
   margin-left: 71px;
   margin-top: -9px;
+  font-size: 15px;
 }
 
 #loginSection label:nth-child(2) h5{
   color: var(--font-color-light-black);
   z-index: 15;
   text-align: left;
-  position: absolute;
+  /* position: absolute; */
   margin-left: 71px;
   margin-top: -10px;
+  font-size: 15px;
 }
 
 
@@ -613,15 +601,9 @@ input::placeholder {
 }
 
 #registrationSection label {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: 'overlap';
-  margin-left: 30px;
-  margin-right: 42px;
   width: 318px;
   height: 50px;
-  margin-top: 16px;
+
 }
 
 #registrationSection input {
@@ -634,132 +616,59 @@ input::placeholder {
   font-weight: 400;
   line-height: 21.94px;
   color: var(--font-color);
-  margin-top: -8px;
 }
 
 #registrationSection h5 {
   color: var(--font-color-light-black);
   text-align: left;
-  margin-left: 35px;
-  /* grid-area: overlap; */
-  margin-top: 16px;
-  z-index: 10;
+  margin-left: 70px;
+  margin-top: 9px;
+  font-size: 15px;
 }
 
 #registrationSection h3 {
   margin-bottom: 16px;
 }
 
-#registrationSection .firstDiv {
-  margin-top: 24px;
-  width: 51px;
+/* #registrationSection .firstDiv {
+  width: 48px;
   height: 1px;
   background: white;
-  margin-left: 26px;
+  margin-left: 58px;
   z-index: 9;
-  position: absolute;
 }
 
 #registrationSection .secondDiv {
-  margin-top: 24px;
   width: 80px;
   height: 1px;
   background: white;
   margin-left: 26px;
   z-index: 9;
-  position: absolute;
 }
 
 #registrationSection .thirdDiv {
-  margin-top: 24px;
   width: 68px;
   height: 1px;
   background: white;
   margin-left: 26px;
   z-index: 9;
-  position: absolute;
 }
 
 #registrationSection .fourthDiv {
-  margin-top: 24px;
   width: 78px;
   height: 1px;
   background: white;
   margin-left: 26px;
   z-index: 9;
-  position: absolute;
 }
 
 #registrationSection .fifthDiv {
-  margin-top: 24px;
   width: 133px;
   height: 1px;
   background: white;
   margin-left: 26px;
   z-index: 9;
-  position: absolute;
-}
-
-/* #registrationSection label:nth-child(1) h5::before {
-  content: '';
-  display: block;
-  width: 54px;
-  height: 1px;
-  background: white;
-  position: absolute;
-  z-index: -1;
-  top: 193px;
-  left: 58px;
-  }
-
-  #registrationSection label:nth-child(2) h5::before {
-    content: '';
-    display: block;
-    width: 85px;
-    height: 1px;
-    background: white;
-    position: absolute;
-    z-index: -1;
-    left: 58px;
-    top: 259px;
-}
-
-  #registrationSection label:nth-child(3) h5::before {
-  content: '';
-  display: block;
-  width: 71px;
-  height: 1px;
-  background: white;
-  position: absolute;
-  z-index: -1;
-  left: 58px;
-  top: 325px;
-  }
-
-#registrationSection label:nth-child(4) h5::before {
-content: '';
-display: block;
-width: 85px;
-height: 1px;
-background: white;
-position: absolute;
-z-index: -1;
-left: 58px;
-top: 391px;
-}
-
-#registrationSection label:nth-child(5) h5::before {
-content: '';
-display: block;
-width: 136px;
-height: 1px;
-background: white;
-position: absolute;
-z-index: -1;
-left: 58px;
-top: 457px;
 } */
-
 
   #registrationSection button {
     width: 318px;
@@ -794,13 +703,12 @@ top: 457px;
 
   #registrationSection .errorMsg {
     font-weight: 500;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14.63px;
     color: var(--font-color-error);
     margin: 0 0 0 38px;
     text-align: left;
-    margin-top: 30px;
-    margin-bottom: -25px;
+    margin-top: 5px;
   }
 
 
@@ -858,10 +766,10 @@ top: 457px;
 
   #forgottenPasswordSection h5 {
     color: var(--font-color-light-black);
-    position: absolute;
+    /* position: absolute; */
     text-align: left;
-
-    z-index: 15;
+    font-size: 15px;
+    /* z-index: 15; */
   }
 
   /* #forgottenPasswordSection h5::before {
@@ -939,18 +847,20 @@ top: 457px;
   color: var(--font-color-light-black);
   text-align: left;
   left: 71px;
-  position: absolute;
+  /* position: absolute; */
   top: 167px;
-  z-index: 15;
+  /* z-index: 15; */
+  font-size: 15px;
 }
 
 #createNewPasswordSection label:nth-child(2) h5 {
   color: var(--font-color-light-black);
   text-align: left;
   left: 71px;
-  position: absolute;
+  /* position: absolute; */
   top: 242px;
-  z-index: 15;
+  /* z-index: 15; */
+  font-size: 15px;
 }
 
 #createNewPasswordSection h5::before {
@@ -959,7 +869,7 @@ top: 457px;
   width: 122px;
   height: 1px;
   background: white;
-  position: absolute;
+  /* position: absolute; */
   top: 9px;
   z-index: -1;
   left: -10px;
@@ -971,10 +881,11 @@ top: 457px;
   width: 176px;
   height: 1px;
   background: white;
-  position: absolute;
+  /* position: absolute; */
   top: 9px;
   z-index: -1;
   left: -10px;
+  font-size: 15px;
   }
 
 
@@ -1117,7 +1028,7 @@ top: 457px;
   margin: 16px 36px 40px 36px;
   background-color: var(--bg-color-white);
   border-radius: 10px;
-  height: 112px;
+  height: 137px;
   box-shadow: 10px 14px 17px rgba(0, 0, 0, 0.2);
 }
 
@@ -1173,7 +1084,7 @@ top: 457px;
   margin: 16px 36px 40px 36px;
   background-color: var(--bg-color-white);
   border-radius: 10px;
-  height: 112px;
+  height: 137px;
   box-shadow: 10px 14px 17px rgba(0, 0, 0, 0.2);
 }
 
@@ -1224,7 +1135,7 @@ height: 30px;
   line-height: 15.85px;
   color: var(--btn-color-dark);
   top: 7px;
-  left: 6px;
+  left: 5px;
 }
 
 .secondLetter {
@@ -1234,7 +1145,7 @@ height: 30px;
   line-height: 15.85px;
   color: var(--btn-color-dark);
   top: 7px;
-  left: 15px;
+  left: 16px;
 }
 
 /* Coffee Info */
@@ -1277,4 +1188,6 @@ height: 30px;
       padding-top: 17px;
   }
 
-
+.emptyBasket h3 {
+  color: white;
+}

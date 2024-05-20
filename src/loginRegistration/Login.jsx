@@ -3,21 +3,19 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { ForgottenPassword } from '../loginRegistration/ForgottenPassword'
 import { useContextAuth } from '../context/ModalContext'
 import { RegistredHomePage } from '../pages/RegistredHomePage'
+import { Context2 } from '../App'
 
 
-export const Login = (props) => {
-   // const [ showModal2, setShowModal2 ] = useContext(Context2)
-   // const [ showModal, setShowModal ] = useContext(Context3)
-   // const [ isLoggedIn, setIsLoggedIn ] = useContext(Context);
-   const [ showModal, setShowModal, showModal2, setShowModal2, isLoggedIn, setIsLoggedIn ] = useContextAuth();
-   // console.log('show modal2', showModal2)
-   // console.log('show modal', showModal)
-   console.log('isLoggedIn', isLoggedIn)
+export const Login = () => {
+
+   const [ showModal, setShowModal, showModal2, setShowModal2 ] = useContextAuth();
+   const [ isLoggedIn, setIsLoggedIn ] = useContext(Context2)
+
    const [ forgottenPassword, setForgottenPassword ] = useState(false)
    const [user, setUser] = useState({
       email: '',
@@ -31,12 +29,15 @@ export const Login = (props) => {
     }))   
     }
 
+   const closeHomePage = () => {
+      setIsLoggedIn(true);
+   }
 
    function handleSubmit(e) {
        e.preventDefault();
        const lsUser = JSON.parse(localStorage.getItem('user'));
          if (lsUser.email === user.email && lsUser.password === user.password) {
-            setIsLoggedIn(true)
+            closeHomePage()
          }
     }
 
@@ -79,7 +80,7 @@ export const Login = (props) => {
             <p onClick={handleWithForgottenPass}>Zaboravljena lozinka?</p>
             <button type='submit'>Prijavi Se</button>
          </form>
-         {forgottenPassword && <ForgottenPassword backFromForgotten={(e) => backFromForgotten(e)}/>}
+         { forgottenPassword && <ForgottenPassword backFromForgotten={(e) => backFromForgotten(e)}/>}
          { isLoggedIn && <RegistredHomePage />}
-    </div>
+      </div>
 }

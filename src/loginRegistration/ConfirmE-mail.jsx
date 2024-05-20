@@ -4,19 +4,12 @@ import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { ConfirmedEmail } from './ConfirmedE-mail'
 
 
-export const ConfirmEmail = ({confirmEmailGoBack}) => {
+export const ConfirmEmail = () => {
     const [ confirmEmail, setConfirmEmail ] = useState(false)
 
     function handleConfirm() {
-        //closeRegiser('zz')
         setConfirmEmail(true)
-        
     }
-
-    // const closeConfirm = (e) => {
-    //    e == 'close-confirm' ? setConfirmEmail(false) : setConfirmEmail(true)
-    //    confirmEmailGoBack('confirmEmail')
-    // }
 
     return <div id='confirmEmail'>
     <img src={AcademyImg} alt="AcademyImg" />

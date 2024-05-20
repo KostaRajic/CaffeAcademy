@@ -3,10 +3,16 @@ import profile from '../assets/Image/Header Images/profile.png'
 import coffeeToGo from '../assets/Image/Header Images/coffee-to-go.png'
 import coffeeNumber from '../assets/Image/Header Images/coffee-number.png'
 import profilePopUp from '../assets/Image/Header Images/ellipse.png'
-import { LoginInRegistrationPopUp } from '../loginRegistration/LoginInRegistrationPopUp'
-import { useState } from 'react'
+import { useRef } from 'react'
 
 export const RegistredHeader = () => {
+    const firstLetter = useRef(null);
+    const secondLetter = useRef(null)
+
+    const lsUser = JSON.parse(localStorage.getItem('user'));
+
+    firstLetter.current.textContent = lsUser.name[0].toUpperCase()
+    secondLetter.current.textContent = lsUser.name[0].toUpperCase()
 
 
     return (
@@ -16,8 +22,8 @@ export const RegistredHeader = () => {
            
                 <div className='regIcons'>
                     <img className='reg-profile-img' src={profilePopUp} alt="Profile Circle" />
-                    <p className='firstLetter'>K</p>
-                    <p className='secondLetter'>R</p>
+                    <p className='firstLetter' ref={firstLetter}>K</p>
+                    <p className='secondLetter' ref={secondLetter}>R</p>
                 </div>
 
                 <div className='reg-coffee-img'>

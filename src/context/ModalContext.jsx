@@ -15,7 +15,7 @@ export const UseContextProvider = ({children}) => {
 
 
     return <div>
-        <Context.Provider value = {[ isLoggedIn, setIsLoggedIn, showModal,  setShowModal, showModal2, setShowModal2 ]}>
+        <Context.Provider value = {[  showModal,  setShowModal, showModal2, setShowModal2, isLoggedIn, setIsLoggedIn ]}>
             {children}
         </Context.Provider>
     </div>

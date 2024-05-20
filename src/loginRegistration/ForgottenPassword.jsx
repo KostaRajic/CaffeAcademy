@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { CreateNewPassword } from '../loginRegistration/CreateNewPassword'
+import { useContextAuth } from '../context/ModalContext'
 
 export const ForgottenPassword = ({backFromForgotten}) => {
     const [ createPass, setCreatePass ] = useState(false)
@@ -19,7 +20,7 @@ export const ForgottenPassword = ({backFromForgotten}) => {
     }
 
     const handleBack = (state) => {
-        backFromForgotten('goBack')
+        backFromForgotten('goBack');
         state === 'goBack' ? setCreatePass(false) : setCreatePass(true)
     }
 
@@ -29,7 +30,6 @@ export const ForgottenPassword = ({backFromForgotten}) => {
         if (lsUser.email === formData.email) {
             setCreatePass(true)
         }
-        console.log(lsUser)
         
 }
     
@@ -54,6 +54,6 @@ export const ForgottenPassword = ({backFromForgotten}) => {
         style={{cursor: 'pointer'}}
         >Prijavu.</span></p>
     { createPass && <CreateNewPassword backFromCreate={(e) => handleBack(e)}/>}
-       
+    
     </div>
 }

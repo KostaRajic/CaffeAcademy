@@ -4,17 +4,12 @@ import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { Login } from '../loginRegistration/Login'
 
 
-export const ConfirmedEmail = ({closeConfirm}) => {
+export const ConfirmedEmail = () => {
     const [ showLogin, setShowLogin ] = useState(false)
 
     const handleConfirm = (e) => {
         setShowLogin(!showLogin);
-        //closeConfirm('close-confirm')
     }
-
-    // const onSubmit = (e) => {
-    //     e == 'onSubmit' ? setShowLogin(false) : setShowLogin(true)
-    // }
 
 
     return <div id='confirmedEmail'>
