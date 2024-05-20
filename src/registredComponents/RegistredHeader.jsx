@@ -13,9 +13,13 @@ export const RegistredHeader = () => {
     const lsUser = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
-        firstLetter.current.textContent = lsUser.name[0].toUpperCase()
-        secondLetter.current.textContent = lsUser.name[0].toUpperCase()
+        firstLetter.current.textContent = lsUser.name[0].toUpperCase();
+        secondLetter.current.textContent = lsUser.lastName[0].toUpperCase();
     }, [])
+
+    useEffect(() => {
+        
+    },[])
 
     return (
         <header className="header">
