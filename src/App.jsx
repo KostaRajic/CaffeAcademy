@@ -19,13 +19,12 @@ function App() {
     <Context2.Provider value={[ isLoggedIn , setIsLoggedIn ]}>
     { isLoggedIn ? <RegistredHomePage/> : <HomePage /> }
     </Context2.Provider>
-    {/* <EmptyBasket /> */}
-    </div>
-    {/* <CoffeeInfo/> */}
-
+    {/* <RegistredHomePage/> */}
     
+    {/* <CoffeeInfo/> */}
+    </div>
+        
 
 }
 
 export default App
-  

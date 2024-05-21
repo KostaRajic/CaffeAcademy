@@ -13,13 +13,13 @@ export const RegistredHomePage = () => {
     return <div>
             
         <RegistredHeader />
-        <HeroSection />
-        <CoffeeMenu/>
-        <SpecialSelection />
-        <WelcomeInfo />
-        <ContactInfo />
-        <Footer />
-        <CoffeeInfo/>
+            <HeroSection />
+            <CoffeeMenu/>
+            <SpecialSelection />
+            <WelcomeInfo />
+            <ContactInfo />
+            <Footer />
+        {/* <CoffeeInfo/> */}
         
     </div>
 

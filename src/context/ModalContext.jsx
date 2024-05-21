@@ -9,13 +9,12 @@ export const useContextAuth = () => {
 }
 
 export const UseContextProvider = ({children}) => {
-    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const [ showModal, setShowModal ] = useState(false);
     const [ showModal2, setShowModal2 ] = useState(false);
 
 
     return <div>
-        <Context.Provider value = {[  showModal,  setShowModal, showModal2, setShowModal2, isLoggedIn, setIsLoggedIn ]}>
+        <Context.Provider value = {[  showModal,  setShowModal, showModal2, setShowModal2 ]}>
             {children}
         </Context.Provider>
     </div>

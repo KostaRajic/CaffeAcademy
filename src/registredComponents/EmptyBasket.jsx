@@ -1,9 +1,21 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
 import EmptyBasketImg from '../assets/Image/RegistredImages/BasketImg.png'
 
-export const EmptyBasket = () => {
+export const EmptyBasket = (props) => {
 
-    return <div className="emptyBasket">
-        <h3>Tvoja korpa je prazna</h3>
-        <img src={EmptyBasketImg} alt="" />
+    // const handleBack = () => {
+    //     props.setShowBasket()
+    // }
+
+    return <div id="emptyBasketContainer" >
+        <div className='emptyBasket'>
+            <h3>Tvoja korpa je prazna</h3>
+            <img src={EmptyBasketImg} alt="Basket" />
+            <p 
+            onClick={() => props.goBack(false)}
+            style={{cursor: 'pointer'}}
+            >Pogledaj ponudu</p>
+        </div>
     </div>
 }
