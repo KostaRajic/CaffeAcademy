@@ -19,7 +19,6 @@ export const RegistredHomePage = () => {
             <WelcomeInfo />
             <ContactInfo />
             <Footer />
-        {/* <CoffeeInfo/> */}
         
     </div>
 

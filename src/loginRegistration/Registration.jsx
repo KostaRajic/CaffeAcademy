@@ -53,13 +53,6 @@ export const Registration = () => {
         }
 
 
-        useEffect(() => {
-                console.log('formError', formErrors)
-                if(Object.keys(formErrors).length === 0 && isSubmit) {
-                        console.log('formData', formData)
-                }
-        }, [formErrors])
-
 
         useEffect(() => {
                 localStorage.setItem('user', JSON.stringify(formData))
@@ -68,10 +61,6 @@ export const Registration = () => {
         const confirmEmailGoBack = (e) => {
                 e == 'confirmEmail' ? setConfirmEmail(!confirmEmail) : setConfirmEmail(!confirmEmail)
         }
-
-        // const closeRegiser = (e) => {
-        //         e == 'zz' ? setConfirmEmail(!confirmEmail) : setConfirmEmail(!confirmEmail)
-        // }
 
 
         const validate = (values) => {
@@ -94,9 +83,9 @@ export const Registration = () => {
                 else if (values.lastName.length > 20) {
                         errors.lastName = 'Prezime mora da sadrži najviše 20 znakova alfabeta.'
                 }
-                // if (!values.email.includes('@')) {
-                //         errors.email = 'Pogrešan format e-mail adrese.'
-                // }
+                if (!values.email.includes('@')) {
+                        errors.email = 'Pogrešan format e-mail adrese.'
+                }
                 else if (values.password.split('').every(e => e !== e.toLowerCase())) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
                 } else if (values.password.split('').every(e => e !== e.toUpperCase())) {
@@ -144,7 +133,7 @@ export const Registration = () => {
                 <label htmlFor="password">
                         <h5>Lozinka*</h5>
                         <div className='fourthDiv'></div>
-                        <input type='text' name='password' value={formData.possword} onChange={handleChange} placeholder="Lozinka" id='password' />
+                        <input type='password' name='password' value={formData.possword} onChange={handleChange} placeholder="Lozinka" id='password' />
                 </label>
                         {formErrors.password && <p className='errorMsg'>{formErrors.password}</p>}
                 <label htmlFor="confirmPassword">

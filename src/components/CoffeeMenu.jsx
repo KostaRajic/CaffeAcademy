@@ -1,20 +1,35 @@
-import { useState } from 'react';
+/* eslint-disable no-unreachable */
+/* eslint-disable no-undef */
+import { useContext, useState } from 'react';
 import cupOfCoffee from '../assets/Image/Main Section Images/cup-of-coffee.png'
 import plus from '../assets/Image/Main Section Images/plus.png'
 import { NotRegistredComp } from '../loginRegistration/NotRegistred';
+import { Context2 } from '../App';
+import { CoffeeInfo } from '../registredComponents/CoffeeInfo';
 
 export const CoffeeMenu = () => {
+    // const [ isLoggedIn, setIsLoggedIn ] = useContext(Context2);
+    const [ showCoffeeInfo, setShowCoffeeInfo ] = useState(false)
+    console.log(showCoffeeInfo)
+
+    const handleChooseCoffee = () => {
+        setShowCoffeeInfo(true)
+    }
 
     return <section className='coffee-menu-section'>
+
         <h1>Naša ponuda</h1>
+        
         <div className='coffee-cart'>
             <div>
                 <img src={cupOfCoffee} alt='Cup of coffee' />
                 <h2 style={{ width: '80px', height: '40px' }}>Esspreso kratki</h2>
                 <p>Svojom bogatom aromom i punim ukusom, ova mala ali moćna kafica  čini savršen početak dana.</p>
-                <button type='submit'><img src={plus} alt="Plus" /></button>
+                <button  onClick={handleChooseCoffee}
+                type='submit' ><img src={plus} alt="Plus" /></button>
+                
             </div>
-
+            
             <div>
                 <img src={cupOfCoffee} alt='Cup of coffee' />
                 <h2>Esspreso kratki <br /> sa mlekom</h2>
@@ -190,8 +205,9 @@ export const CoffeeMenu = () => {
                 <p>Neodoljiva poslastica koja predstavlja spoj belgijske čokolade i mleka,  savršena za hladne dane.</p>
                 <button type='submit'><img src={plus} alt="Plus" /></button>
             </div>
+           
         </div>
-
+        { showCoffeeInfo && <CoffeeInfo/> }
     </section >
 
 }

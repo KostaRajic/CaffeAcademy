@@ -22,7 +22,6 @@ export function LoginInRegistrationPopUp({handleLoginModal, props}) {
     }
 
     const closeModal = (e) => {
-        //e === 'goBack' ? setShowLogin(false) : setShowLogin(true)
         e === 'goBack' ? setShowRegister(false) : setShowRegister(true)
     }
 

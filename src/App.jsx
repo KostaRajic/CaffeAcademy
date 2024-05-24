@@ -9,6 +9,7 @@ import { Registration } from './loginRegistration/Registration';
 import { useContextAuth } from './context/ModalContext';
 import { NotRegistredComp } from './loginRegistration/NotRegistred';
 import { EmptyBasket } from './registredComponents/EmptyBasket';
+import { CreateNewPassword } from './loginRegistration/CreateNewPassword';
 
 export const Context2 = createContext()
 
@@ -16,12 +17,12 @@ function App() {
   const [ isLoggedIn , setIsLoggedIn ] = useState(false)
 
   return  <div>
-    <Context2.Provider value={[ isLoggedIn , setIsLoggedIn ]}>
+    {/* <Context2.Provider value={[ isLoggedIn , setIsLoggedIn ]}>
     { isLoggedIn ? <RegistredHomePage/> : <HomePage /> }
-    </Context2.Provider>
-    {/* <RegistredHomePage/> */}
-    
+    </Context2.Provider> */}
+
     {/* <CoffeeInfo/> */}
+    <RegistredHomePage/>
     </div>
         
 
