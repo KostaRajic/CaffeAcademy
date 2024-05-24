@@ -17,12 +17,12 @@ function App() {
   const [ isLoggedIn , setIsLoggedIn ] = useState(false)
 
   return  <div>
-    {/* <Context2.Provider value={[ isLoggedIn , setIsLoggedIn ]}>
+    <Context2.Provider value={[ isLoggedIn , setIsLoggedIn ]}>
     { isLoggedIn ? <RegistredHomePage/> : <HomePage /> }
-    </Context2.Provider> */}
+    </Context2.Provider>
 
     {/* <CoffeeInfo/> */}
-    <RegistredHomePage/>
+    {/* <RegistredHomePage/> */}
     </div>
         
 
