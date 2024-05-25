@@ -4,7 +4,22 @@ import coffeeGrain from '../assets/Image/RegistredImages/coffee-grain.png'
 import milk from '../assets/Image/RegistredImages/milk.png'
 
 export const CoffeeInfo = () => {
-    const [ isChecked, setIsChecked ] = useState(false)
+    const [ isChecked, setIsChecked ] = useState(false);
+    const [ coffee, setCoffee ] = useState({
+        size: {
+            small: false,
+            medium: '',
+            large: '',
+        },
+        grain: {
+            small: '',
+            medium: '',
+            large: '',
+        },
+        milk: '',
+    })
+
+    console.log(coffee?.size?.small)
 
     return <div id='coffeeInfoContainer'>
     <header className="headerClass">Narudžbina</header>
@@ -14,29 +29,32 @@ export const CoffeeInfo = () => {
                 <img src={cupOfCoffee} alt="Cup of Coffee" />
                 <h3>Esspreso dugi</h3>
             </div>
-        <h4>Izaberi veličinu</h4>
+            <h4>Izaberi veličinu</h4>
             <div className='coffeeSize'>
                 <div className='small'>
-                    <div>
-                    <img src={cupOfCoffee} alt="Cup of Coffee" />
-                    <span>S</span>
-                    </div>
+                    <label htmlFor="smallCup">
+                        <input id='smallCup' type='radio' name='coffeeSize' value={coffee?.size?.small} onChange={(e) => setCoffee(e.target.checked)} />
+                        <img src={cupOfCoffee} alt="Cup of Coffee" />
+                        <span>S</span>
+                    </label>
                     <p>130,00 din</p>
                 </div>
                 
                 <div className='medium'>
-                    <div>
-                    <img src={cupOfCoffee} alt="Cup of Coffee" />
-                    <span>M</span>
-                    </div>
+                    <label htmlFor="mediumCup">
+                        <input id='mediumCup' type='radio' name='coffeeSize' value={coffee.size} onChange={(e) => setCoffee(e.target.checked)} />
+                        <img src={cupOfCoffee} alt="Cup of Coffee" />
+                        <span>M</span>
+                    </label>
                     <p>140,00 din</p>
                 </div>
             
                 <div className='large'>
-                    <div>
-                    <img src={cupOfCoffee} alt="Cup of Coffee" />
-                    <span>L</span>
-                    </div>
+                    <label htmlFor="largeCup">
+                    <input id='largeCup' type='radio' name='coffeeSize' value={coffee.size} onChange={(e) => setCoffee(e.target.checked)} />
+                        <img src={cupOfCoffee} alt="Cup of Coffee" />
+                        <span>L</span>
+                    </label>
                     <p>150,00 din</p>
                 </div>
             </div>
@@ -69,9 +87,9 @@ export const CoffeeInfo = () => {
             </div>
         <div className='btns'>
             <button>DODAJ</button>
-            <button>Otkaži</button>
+            <button>OTKAŽI</button>
         </div>
         </form>
-    </div>
+    </div> 
     </div>
 }
