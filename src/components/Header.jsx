@@ -9,10 +9,11 @@ import { useContextAuth } from '../context/ModalContext'
 
 export const Header = () => {
 
-    const [ showModal, setShowModal, showModal2, setShowModal2 ] = useContextAuth(false)
+    const { showModal, setShowModal, showModal2, setShowModal2 } = useContextAuth()
 
     const handleModal = () => {
-        showModal2 ? setShowModal2(false) : setShowModal(true)
+        setShowModal(!showModal)
+        // showModal2 ? setShowModal2(!showModal2) : 
     }
 
     const closeModal = (state) => {

@@ -8,13 +8,11 @@ import AcademyImg from '../assets/Image//Header Images/academy-logo.png'
 import { ForgottenPassword } from '../loginRegistration/ForgottenPassword'
 import { useContextAuth } from '../context/ModalContext'
 import { RegistredHomePage } from '../pages/RegistredHomePage'
-import { Context2 } from '../App'
 
 
 export const Login = () => {
 
-   const [ showModal, setShowModal, showModal2, setShowModal2 ] = useContextAuth();
-   const [ isLoggedIn, setIsLoggedIn ] = useContext(Context2)
+   const { showModal, setShowModal, showModal2, setShowModal2, isLoggedIn, setIsLoggedIn } = useContextAuth();
 
    const [ forgottenPassword, setForgottenPassword ] = useState(false)
    const [user, setUser] = useState({

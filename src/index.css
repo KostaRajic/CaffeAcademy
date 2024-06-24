@@ -6,7 +6,7 @@
   --font-color: rgba(0, 0, 0, 1);
   --bg-color-white: rgba(255, 255, 255, 1);
   --blue: rgba(36, 140, 197, 1);
-  --btn-color-dark: rgba(22, 72, 100, 1);
+  --btn-blue-color-dark: rgba(22, 72, 100, 1);
   --bg-color-light-blue: rgba(204, 233, 250, 1);
   --font-color-light-black: rgba(37, 37, 37, 1);
   --font-color-error: rgba(248, 19, 46, 1);
@@ -71,6 +71,7 @@ body {
 .right-side {
   display: flex;
   margin-right: 18px;
+
 }
 
 /* Hero Section */
@@ -364,7 +365,7 @@ margin: 20px 20px 10px 20px;
 width: 124px;
 height: 40px;
 border-radius: 10px;
-background-color: var(--btn-color-dark);
+background-color: var(--btn-blue-color-dark);
 color: var(--bg-color-white);
 cursor: pointer;
 }
@@ -373,8 +374,8 @@ cursor: pointer;
 width: 124px;
 height: 40px;
 border-radius: 10px;
-border: 1px solid var(--btn-color-dark);
-color: var(--btn-color-dark);
+border: 1px solid var(--btn-blue-color-dark);
+color: var(--btn-blue-color-dark);
 background-color: var(--bg-color-white);
 margin-bottom: 20px;
 cursor: pointer;
@@ -417,7 +418,7 @@ cursor: pointer;
 .notRegistred button:nth-child(2) {
   width: 124px;
   height: 40px;
-  background-color: var(--btn-color-dark);
+  background-color: var(--btn-blue-color-dark);
   font-weight: 400;
   font-size: 16px;
   line-height: 19.5px;
@@ -441,8 +442,8 @@ cursor: pointer;
 .notRegistred button:nth-child(4) {
   width: 124px;
   height: 40px;
-  border: 1px solid var(--btn-color-dark);
-  color: var(--btn-color-dark);
+  border: 1px solid var(--btn-blue-color-dark);
+  color: var(--btn-blue-color-dark);
   background-color: var(--bg-color-white);
   font-weight: 400;
   font-size: 16px;
@@ -569,7 +570,7 @@ input::placeholder {
   font-weight: 700;
   line-height: 21.94px;
   color: var(--bg-color-white);
-  background-color: var(--btn-color-dark);
+  background-color: var(--btn-blue-color-dark);
   font-size: 18px;
   border: none;
   cursor: pointer;
@@ -676,7 +677,7 @@ input::placeholder {
     font-weight: 700;
     line-height: 21.94px;
     color: var(--bg-color-white);
-    background-color: var(--btn-color-dark);
+    background-color: var(--btn-blue-color-dark);
     font-size: 18px;
     border: none;
     cursor: pointer;
@@ -697,7 +698,7 @@ input::placeholder {
     text-decoration: underline;
     font-size: 16px;
     line-height: 19.5px;
-    color: var(--btn-color-dark);
+    color: var(--btn-blue-color-dark);
   }
 
   #registrationSection .errorMsg {
@@ -756,7 +757,7 @@ input::placeholder {
     font-weight: 700;
     line-height: 21.94px;
     color: var(--bg-color-white);
-    background-color: var(--btn-color-dark);
+    background-color: var(--btn-blue-color-dark);
     font-size: 18px;
     border: none;
     cursor: pointer;
@@ -792,7 +793,7 @@ input::placeholder {
 
   #forgottenPasswordSection p span {
     font-weight: 700;
-    color: var(--btn-color-dark);
+    color: var(--btn-blue-color-dark);
     text-decoration: underline;
     cursor: pointer;
   }
@@ -835,7 +836,7 @@ input::placeholder {
   font-weight: 700;
   line-height: 21.94px;
   color: var(--bg-color-white);
-  background-color: var(--btn-color-dark);
+  background-color: var(--btn-blue-color-dark);
   font-size: 18px;
   border: none;
   cursor: pointer;
@@ -923,7 +924,7 @@ input::placeholder {
   font-weight: 700;
   line-height: 21.94px;
   color: var(--bg-color-white);
-  background-color: var(--btn-color-dark);
+  background-color: var(--btn-blue-color-dark);
   font-size: 18px;
   border: none;
   cursor: pointer;
@@ -997,7 +998,7 @@ input::placeholder {
   font-weight: 700;
   line-height: 21.94px;
   color: var(--bg-color-white);
-  background-color: var(--btn-color-dark);
+  background-color: var(--btn-blue-color-dark);
   font-size: 18px;
   border: none;
   cursor: pointer;
@@ -1052,7 +1053,7 @@ input::placeholder {
   font-weight: 700;
   line-height: 21.94px;
   color: var(--bg-color-white);
-  background-color: var(--btn-color-dark);
+  background-color: var(--btn-blue-color-dark);
   font-size: 18px;
   border: none;
   cursor: pointer;
@@ -1109,7 +1110,7 @@ input::placeholder {
   font-weight: 700;
   line-height: 21.94px;
   color: var(--bg-color-white);
-  background-color: var(--btn-color-dark);
+  background-color: var(--btn-blue-color-dark);
   font-size: 18px;
   border: none;
   cursor: pointer;
@@ -1119,12 +1120,19 @@ input::placeholder {
 
 .regIcons {
   position: relative;
+  cursor: pointer;
+  margin-bottom: -3px;
+}
+
+.reg-coffee-img {
+  display: flex;
 }
 
 .reg-profile-img {
 margin-right: 10px;
 width: 30px;
 height: 30px;
+
 }
 
 .firstLetter {
@@ -1132,7 +1140,7 @@ height: 30px;
   font-size: 13px;
   font-weight: 700;
   line-height: 15.85px;
-  color: var(--btn-color-dark);
+  color: var(--btn-blue-color-dark);
   top: 7px;
   left: 5px;
 }
@@ -1142,9 +1150,15 @@ height: 30px;
   font-size: 13px;
   font-weight: 700;
   line-height: 15.85px;
-  color: var(--btn-color-dark);
+  color: var(--btn-blue-color-dark);
   top: 7px;
   left: 16px;
+}
+
+.right-side .reg-coffee-img .ellipse {
+  width: 18px;
+  height: 18px;
+  margin-left: -15px;
 }
 
 
@@ -1214,7 +1228,6 @@ height: 30px;
   z-index: 100;
   width: 390px;
   margin: 0 auto;
-
 }
 
 .headerClass {
@@ -1229,7 +1242,19 @@ height: 30px;
   font-size: 18px;
   line-height: 21.94px;
   padding-top: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 16px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+}
 
+.headerClass img {
+  width: 8px;
+  height: 12px;
+  margin-left: -122px;
+  margin-right: 110px;
+  cursor: pointer;
 }
 
 .coffee-info {
@@ -1276,6 +1301,7 @@ height: 30px;
   margin-left: 16px;
   display: inherit;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .imgColor .coffeeSize .small input{
@@ -1307,6 +1333,7 @@ height: 30px;
   display: inherit;
   border-radius: 50%;
   margin-top: -5px;
+  cursor: pointer;
 }
 
 .imgColor .coffeeSize .medium input{
@@ -1343,6 +1370,7 @@ height: 30px;
   display: inherit;
   border-radius: 50%;
   margin-top: -10px;
+  cursor: pointer;
 }
 
 .imgColor .coffeeSize .large input{
@@ -1406,31 +1434,48 @@ height: 30px;
   font-size: 18px;
   line-height: 21.94px;
   color: var(--font-color);
-  margin-top: -33px;
+  margin-top: -21px;
   margin-left: 3px;
   padding-top: 42px;
 }
 
 .imgColor .chooseGrain img {
-  margin: 0px 0 5px -34px;
+  margin: 14px 0 5px -34px;
 }
-
 
 .grainClass {
-  display: flex;
+  display: inline-flex;
 }
 
-.grainClass div:first-child {
+.grainClass label {
   margin-left: 16px;
+  height: 42px;
   width: 90px;
+  background-color: var(--bg-color-white);
+  color: var(--font-color);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  line-height: 21.94px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.grainClass div:nth-child(2) {
+.grainClass label:first-child {
+  margin-left: -37px;
+}
+
+.grainClass label:nth-child(2) {
   width: 88px;
 }
 
-.grainClass div:nth-child(3) {
+.grainClass label:nth-child(3) {
   width: 108px;
+}
+.grainClass input {
+  display: none;
 }
 
 .grainClass div:not(:last-child) {
@@ -1455,7 +1500,7 @@ height: 30px;
   text-align: left;
   margin-top: 14px;
   margin-left: 17px;
-  margin-bottom: 8px;
+  margin-bottom: -33px;
   display: flex;
   align-items: center;
   margin-left: 9px;
@@ -1474,8 +1519,12 @@ height: 30px;
   margin-left: -18px;
 }
 
+.milkClass {
+  display: inline-flex;
+  margin-left: -14px;
+}
 
-.milkClass div {
+.milkClass label {
   height: 42px;
   background-color: var(--bg-color-white);
   color: var(--font-color);
@@ -1486,33 +1535,29 @@ height: 30px;
   border-radius: 20px;
   line-height: 21.94px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
-.milkClass {
-  display: flex;
-  margin-top: -47px;
+.milkClass label input {
+  display: none;
 }
 
-.milkClass div {
-  font-weight: 500;
-}
-
-.milkClass div:first-child {
-  margin-left: 16px;
+.milkClass label:first-child {
   width: 106px;
 }
 
-.milkClass div:nth-child(2) {
+.milkClass label:nth-child(2) {
   width: 96px;
 }
 
-.milkClass div:nth-child(3) {
+.milkClass label:nth-child(3) {
   width: 139px;
 }
 
-.milkClass div:not(:last-child) {
-  margin-right: 8px;
+.checkedBgd {
+  background-color: yellow;
 }
+
 
 /* Huw Much Coffee Btns */
 
@@ -1523,7 +1568,7 @@ height: 30px;
   justify-content: space-evenly;
   align-items: center;
   background-color: var(--bg-color-white);
-  margin: 68px auto 0 auto;
+  margin: 58px auto 0 auto;
   border-radius: 20px;
   color: var(--font-color);
   font-size: 22px;
@@ -1563,6 +1608,7 @@ height: 30px;
   display: flex;
   margin-top: 24px;
   justify-content: center;
+
 }
 
 .btns button:first-child {
@@ -1572,6 +1618,8 @@ height: 30px;
   border-radius: 10px;
   margin-left: -65px;
   color: var(--blue);
+  border: none;
+  cursor: pointer;
 }
 
 .btns button:last-child {
@@ -1579,7 +1627,458 @@ height: 30px;
   width: 110px;
   height: 40px;
   border-radius: 10px;
-  margin-right: -70px;
   color: var(--blue);
-  margin-left: 30px;
+  margin-right: -70px;
+  margin-left: 32px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Successful Notification */
+
+.successfulNotificationBg {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+}
+
+.successfulNotificationClass {
+  width: 246px;
+  height: 200px;
+  background-color: var(--blue);
+  border-radius: 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.okClass {
+  width: 60px;
+  height: 60px;
+
+}
+
+.closeBtn {
+ position: absolute;
+ top: 15px;
+ right: 15px;
+ border: 2px solid white;
+ border-radius: 50%;
+ padding: 5px;
+ cursor: pointer;
+ transition: 0,3s ease-in;
+}
+
+.closeBtn:hover {
+  transform: scale(1.1);
+}
+
+.closeBtn:active {
+  transform: scale(0.9);
+}
+
+.successfulNotificationClass p {
+  text-align: center;
+  margin: 10px auto;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19.5px;
+}
+
+.profileLoginPopUpModal {
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  width: 164px;
+  height: 130px;
+  background-color: var(--bg-color-white);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.myProfile { 
+  margin: 20px 20px 10px 20px;
+  width: 124px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: var(--btn-blue-color-dark);
+  color: var(--bg-color-white);
+  cursor: pointer;
+}
+
+.logOut {
+  width: 124px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--btn-blue-color-dark);
+  color: var(--btn-blue-color-dark);
+  background-color: var(--bg-color-white);
+  margin-bottom: 20px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.countClass {
+  color: var(--font-color);
+  font-size: 11px;
+  font-weight: 1000;
+  margin-right: 10px;
+  z-index: 10;
+  margin-left: -14px;
+  margin-top: 1px;
+}
+
+
+/* Profile Component */
+
+.profileBackground {
+  background-image:url(./assets/Image/RegistredImages/CoffeeBackground.jpg);
+  background-size: 550px 100%;
+  background-position: -80px;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.profileClass {
+  background-color: rgba(109, 203, 255, 0.5);
+  height: 100%;
+}
+
+.profileHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileHeaderContainer img {
+  width: 70px;
+  height: 70px;
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
+
+.profileHeaderContainer img:last-child {
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  top: -20px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.profileClass .profileHeaderContainer p {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26.82px;
+    color: var(--btn-blue-color-dark);
+}
+
+.profileFirstLetter {
+  position: absolute;
+  top: 54px;
+  left: 179px;
+}
+
+.profileSecondLetter {
+  position: absolute;
+  top: 54px;
+  left: 196px;
+}
+
+.profileClass h3 {
+  margin-bottom: 32px;
+}
+
+.profileClass form input {
+  width: 354px;
+  height: 56px;
+  background-color: var(--bg-color-white);
+  color: var(--font-color-light-black);
+  border-radius: 10px;
+  border: 1px solid rgba(37, 37, 37, 0.5);
+  display: flex;
+  align-items: center;
+}
+
+.profileClass form input:not(:nth-child(9)) {
+  margin-bottom: 16px;
+}
+
+.profileClass form input:nth-child(9) {
+  margin-bottom: 24px;
+}
+
+.profileClass form span {
+  color: var(--font-color-light-black);
+  padding: 10px 16px;
+  border-right: 1px solid rgba(37, 37, 37, 0.5);
+  position: absolute;
+  top: 8px;
+}
+
+.profileClass form span:nth-child(6) {
+  color: var(--font-color-light-black);
+  padding: 10px 16px;
+  border-right: 1px solid rgba(37, 37, 37, 0.5);
+  position: absolute;
+  top: 80px;
+}
+
+.profileClass form span:nth-child(10) {
+  color: var(--font-color-light-black);
+  padding: 10px 16px;
+  border-right: 1px solid rgba(37, 37, 37, 0.5);
+  position: absolute;
+  top: 153px;
+}
+
+.profileClass form p:first-child {
+  color: var(--font-color-light-black);
+  padding: 10px 16px;
+  border-right: 1px solid rgba(37, 37, 37, 0.5);
+  position: absolute;
+  top: 18px;
+  left: 77px;
+}
+
+.profileClass form img:nth-child(4) {
+  right: 16px;
+  position: absolute;
+  top: 14px;
+}
+
+.profileClass form img:nth-child(8) {
+  right: 16px;
+  position: absolute;
+  top: 87px;
+}
+
+.profileClass form img:nth-child(12) {
+  right: 16px;
+  position: absolute;
+  top: 158px;
+}
+
+.profileClass form {
+  margin: 0 18px 24px 18px;
+  border-bottom: 2px solid var(--bg-color-white);
+  position: relative;
+}
+
+.profileClass form p {
+  position: absolute;
+  color: var(--btn-blue-color-dark);
+}
+
+.profileClass form img {
+  position: absolute;
+  cursor: pointer;
+}
+
+.profileClass input:first-child {
+  padding-left: 78px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.profileClass input:nth-child(5) {
+  padding-left: 113px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.6px;
+}
+
+.profileClass input:nth-child(9) {
+  padding-left: 112px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.6px;
+  padding-left: 98px;
+}
+
+.profileClass .coffeeToGo {
+  width: 354px;
+  margin-bottom: 24px;
+  height: 72px;
+  background-color: var(--bg-color-white);
+
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.profileClass .coffeeToGo div {
+  display: flex;
+  margin-top: 5px;
+  margin-left: 4px;
+}
+
+.profileClass .coffeeToGo p {
+  color: var(--font-color-light-black);
+  text-align: center;
+  font-weight: 700;
+  line-height: 19.5px;
+  padding-top: 5px;
+}
+
+.orderHistory {
+  border-top: 2px solid var(--bg-color-white);
+  width: 354px;
+  margin: 24px 18px 0 18px;
+}
+
+.orderHistory h4 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21.94px;
+  color: var(--font-color);
+}
+
+.orderHistory div {
+  color: var(--font-color);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.5px;
+  width: 354px;
+  background-color: var(--bg-color-white);
+  border: none;
+  border-radius: 10px;
+  height: 149px;
+}
+
+.orderHistory div p {
+  padding: 5px;
+}
+
+
+/* My Order Component */
+
+.myOrderComponent {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: 390px;
+  margin: 0 auto;
+}
+
+.myOrderComponent .myOrderClass {
+  background-image:url(./assets/Image/RegistredImages/CoffeeBackground.jpg);
+  background-size: 550px 100%;
+  background-position: -80px 32px;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.myOrderBackground {
+  background-color: rgba(109, 203, 255, 0.5);
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.myOrderComponent .headerClass img {
+  width: 8px;
+  height: 12px;
+  margin-left: -87px;
+  margin-right: 83px;
+  cursor: pointer;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground section:first-child {
+  margin: 77px 18px 16px 18px;
+  width: 354px;
+  height: 120px;
+  background-color: var(--bg-color-white);
+  border-radius: 10px;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground section {
+  margin: 16px 18px 16px 18px;
+  width: 354px;
+  height: 120px;
+  background-color: var(--bg-color-white);
+  border-radius: 10px;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground section div {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 5px;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground section div div {
+  flex-direction: column;
+  width: 40%;
+  text-align: left;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground section img {
+  margin-top: 39px;
+
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground .cupOfCoffeeClass {
+  width: 60px;
+  height: 58px;
+  margin-top: 24px;
+  margin-left: -9px;
+  cursor: default;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground section h4 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21.94px;
+  color: var(--font-color);
+  text-align: left;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground section p {
+  color: var(--font-color);
+  line-height: 19.5px;
+  text-align: left;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground aside {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 165, 0, 1);
+  border-radius: 20px;
+  justify-content: space-evenly;
+  width: 32px;
+  height: 85px;
+  margin-top: 13px;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground aside img {
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  margin-left: 3px;
+  color: var(--font-color-light-black);
+  font-size: 25px;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground aside img:first-child {
+  margin-top: 3px;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground aside img:last-child {
+  margin-bottom: 3px;
+  margin-top: -3px;
+  cursor: pointer;
+}
+
+.myOrderComponent .myOrderClass .myOrderBackground aside span {
+  color: var(--font-color-light-black);
+  font-weight: 600;
+  font-size: 20px;
 }

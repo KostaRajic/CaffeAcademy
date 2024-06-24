@@ -13,18 +13,21 @@ import { Login } from '../loginRegistration/Login'
 import { useContextAuth } from '../context/ModalContext';
 
 export const Registration = () => {
-        const [ showModal, setShowModal, showModal2, setShowModal2 ] = useContextAuth();
+        const { showModal, setShowModal, showModal2, setShowModal2 } = useContextAuth();
         const [ confirmEmail, setConfirmEmail ] = useState(false);
         const [ showLogin, setShowLogin ] = useState(false)
-        const [ formData, setFormData ] = useState({
+        const [ formData, setFormData ] = useState(() => () => {
+                const savedItems = localStorage.getItem('user');
+                return savedItems ? JSON.parse(savedItems) : {
                 name: '',
                 lastName: '',
                 email: '',
                 password: '',
                 confirmPassword: ''
-        })
+        }})
         const [ formErrors, setFormErrors ] = useState({});
         const [ isSubmit, setIsSubmit ] = useState(false)
+
 
         const handleChange = (e) => {
                 const {name, value} = e.target;
@@ -38,9 +41,11 @@ export const Registration = () => {
                 e.preventDefault()
                 if ((Object.keys(formErrors).length === 0 && isSubmit)) {
                         setConfirmEmail(!confirmEmail)
+                        localStorage.removeItem('items')
                 }
                 setFormErrors(validate(formData))
                 setIsSubmit(true)
+                localStorage.setItem('user', JSON.stringify(formData))
         }
 
         const handleBack = (e) => {
@@ -53,15 +58,9 @@ export const Registration = () => {
         }
 
 
-
-        useEffect(() => {
-                localStorage.setItem('user', JSON.stringify(formData))
-        }, [formData])
-
         const confirmEmailGoBack = (e) => {
                 e == 'confirmEmail' ? setConfirmEmail(!confirmEmail) : setConfirmEmail(!confirmEmail)
         }
-
 
         const validate = (values) => {
                 const errors = {};
@@ -85,10 +84,9 @@ export const Registration = () => {
                 }
                 if (!values.email.includes('@')) {
                         errors.email = 'Pogrešan format e-mail adrese.'
-                }
-                else if (values.password.split('').every(e => e !== e.toLowerCase())) {
+                } else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-                } else if (values.password.split('').every(e => e !== e.toUpperCase())) {
+                } else if (values.password.split('').every((e => !/[a-z]/.test(e)))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
                 } else if (values.password.split('').map(e => Number(e)).every(e => isNaN(e))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
@@ -133,13 +131,13 @@ export const Registration = () => {
                 <label htmlFor="password">
                         <h5>Lozinka*</h5>
                         <div className='fourthDiv'></div>
-                        <input type='password' name='password' value={formData.possword} onChange={handleChange} placeholder="Lozinka" id='password' />
+                        <input type='text' name='password' value={formData.possword} onChange={handleChange} placeholder="Lozinka" id='password' />
                 </label>
                         {formErrors.password && <p className='errorMsg'>{formErrors.password}</p>}
                 <label htmlFor="confirmPassword">
                         <h5>Ponovi Lozinku*</h5>
                         <div className='fifthDiv'></div>
-                        <input type='password' name='confirmPassword' value={formData.confirmPassword} onChange={handleChange} placeholder="Ponovi Lozinku" id='confirmPassword' />
+                        <input type='text' name='confirmPassword' value={formData.confirmPassword} onChange={handleChange} placeholder="Ponovi Lozinku" id='confirmPassword' />
                 </label>
                         {formErrors.confirmPassword && <p className='errorMsg'>{formErrors.confirmPassword}</p>}
     <button type='submit'>Registruj se</button>

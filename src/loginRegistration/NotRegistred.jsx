@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
@@ -13,12 +14,11 @@ export function NotRegistredComp({ handleLoginModal }) {
     const [showRegister, setShowRegister] = useState(false);
     const refMethod  = useRef(null);
 
-    const handleRegister = (state) => {
+    const handleRegister = () => {
         setShowRegister(!showRegister)
     }
 
-
-    const handleLogin = (z) => {
+    const handleLogin = () => {
         setShowLogin(!showLogin)
     }
 
@@ -36,7 +36,7 @@ export function NotRegistredComp({ handleLoginModal }) {
 
 
     const handleClickOutside = (e) => {
-        if( !showLogin && !showRegister && !refMethod?.current?.contains(e.target)) {
+        if(!showLogin && !showRegister && !refMethod?.current?.contains(e.target)) {
             tryFunction()
         }
     }

@@ -15,16 +15,15 @@ import { NotRegistredComp } from "../loginRegistration/NotRegistred";
 
 export const HomePage = ({closeModal}) => {
 
-    const [ showModal,  setShowModal, showModal2, setShowModal2 ] = useContextAuth(false)
+    const { showModal,  setShowModal, showModal2, setShowModal2 } = useContextAuth()
 
     const handleLogin = () => {
-        showModal ? setShowModal(false) : setShowModal2(true)
+        showModal ? setShowModal(!showModal) : setShowModal2(!showModal2)
     }
 
     function closeModal(state) {
         state === 'goBack' ? setShowModal2(false) : setShowModal2(true)
       }
-
 
     return <div>    
                         <Header />
