@@ -23,24 +23,16 @@ export const RegistredHeader = () => {
     let { coffeeBasket, setCoffeeBasket } = useContextAuth(0);
     let { count } = useContextAuth()
     const [ showProfileOrder, setProfileOrder ] = useState(false)
-    let [ coffeeItems, setCoffeeItems ] = useState(() => {
-        const savedItems = localStorage.getItem('items');
-        return savedItems ? JSON.parse(savedItems) : [];
-    })
+    let [ coffeeItems, setCoffeeItems ] = useState({})
 
     const handleTurnOffPopUpModal = (state) => {
         state == 'turn-off' ? setShowPopUpProfileIcon(false) : setShowPopUpProfileIcon(true)
     }
 
-    let coffeeItemss = coffeeItems ? JSON.parse(localStorage.getItem('items')) : [];
 
-    // useEffect(() => {
-    //     coffeeItems = coffeeItems ? JSON.parse(localStorage.getItem('items')) : [];
-    // }, [coffeeItems])
-
-
-
-    console.log(Boolean(coffeeItemss))
+    useEffect(() => {
+        setCoffeeItems(coffeeItems ? JSON.parse(localStorage.getItem('items')) : {})
+    }, [])
 
     const lsUser = JSON.parse(localStorage.getItem('user'));
 
@@ -82,17 +74,17 @@ export const RegistredHeader = () => {
                     onClick={handleBasket}
                     />
                     <img 
-                    style={ coffeeItemss ? {display: 'block'} :  {display: 'none'}}
+                    style={ coffeeItems ? {display: 'block'} :  {display: 'none'}}
                     src={ellipse} 
                     alt="Number of coffees"
                     className='ellipse'
                     /> 
                     <p 
                     className='countClass'
-                    style={ coffeeItemss && coffeeItemss.length < 1 ? {display: 'none'} : {display: 'block'} ||
-                    coffeeItemss && coffeeItemss.length >= 1 && coffeeItems.length < 10 ? {marginLeft: '-12px'} : {marginLeft: '-14px'}} 
+                    style={ coffeeItems && coffeeItems.length < 1 ? {display: 'none'} : {display: 'block'} ||
+                    coffeeItems && coffeeItems.length >= 1 && coffeeItems.length < 10 ? {marginLeft: '-12px'} : {marginLeft: '-14px'}} 
                     >
-                    {coffeeItemss ? coffeeItemss.length : ''}</p>
+                    {coffeeItems ? coffeeItems.length : ''}</p>
                 </div>
             </div>
             { showBasket && <EmptyBasket  goBack={b => setShowBasket(b)}/>}
