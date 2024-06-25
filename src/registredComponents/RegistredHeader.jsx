@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-unused-vars */
@@ -19,19 +20,32 @@ export const RegistredHeader = () => {
     const secondLetter = useRef(null);
     const [ showBasket, setShowBasket ] = useState(false);
     const { showPopUpProfileIcon, setShowPopUpProfileIcon } = useContextAuth()
-    let { coffeeBasket, setCoffeeBasket } = useContextAuth(1);
+    let { coffeeBasket, setCoffeeBasket } = useContextAuth(0);
     let { count } = useContextAuth()
     const [ showProfileOrder, setProfileOrder ] = useState(false)
+    let [ coffeeItems, setCoffeeItems ] = useState(() => {
+        const savedItems = localStorage.getItem('items');
+        return savedItems ? JSON.parse(savedItems) : [];
+    })
 
     const handleTurnOffPopUpModal = (state) => {
         state == 'turn-off' ? setShowPopUpProfileIcon(false) : setShowPopUpProfileIcon(true)
     }
 
+    let coffeeItemss = coffeeItems ? JSON.parse(localStorage.getItem('items')) : [];
+
+    // useEffect(() => {
+    //     coffeeItems = coffeeItems ? JSON.parse(localStorage.getItem('items')) : [];
+    // }, [coffeeItems])
+
+
+
+    console.log(Boolean(coffeeItemss))
+
     const lsUser = JSON.parse(localStorage.getItem('user'));
-    const coffeeItems = JSON.parse(localStorage.getItem('items'))
 
     const handleBasket = () => {
-        coffeeItems.length > 0 ? setProfileOrder(true) : setShowBasket(true)
+        coffeeItems && coffeeItems.length > 0 ? setProfileOrder(true) : setShowBasket(true)
     }
 
     const handleProfilePopUpIcon = () => {
@@ -68,17 +82,17 @@ export const RegistredHeader = () => {
                     onClick={handleBasket}
                     />
                     <img 
-                    style={ coffeeItems.length < 1 ? {display: 'none'} : null}
+                    style={ coffeeItemss ? {display: 'block'} :  {display: 'none'}}
                     src={ellipse} 
                     alt="Number of coffees"
                     className='ellipse'
                     /> 
                     <p 
                     className='countClass'
-                    style={coffeeItems.length < 1 ? {display: 'none'} : {display: 'block'} ||
-                    coffeeItems && coffeeItems.length >= 1 && coffeeItems.length < 10 ? {marginLeft: '-12px'} : {marginLeft: '-14px'}} 
+                    style={ coffeeItemss && coffeeItemss.length < 1 ? {display: 'none'} : {display: 'block'} ||
+                    coffeeItemss && coffeeItemss.length >= 1 && coffeeItems.length < 10 ? {marginLeft: '-12px'} : {marginLeft: '-14px'}} 
                     >
-                    {coffeeItems ? coffeeItems.length : ''}</p>
+                    {coffeeItemss ? coffeeItemss.length : ''}</p>
                 </div>
             </div>
             { showBasket && <EmptyBasket  goBack={b => setShowBasket(b)}/>}

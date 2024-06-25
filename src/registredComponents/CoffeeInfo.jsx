@@ -36,11 +36,11 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
         return savedItems ? JSON.parse(savedItems) : [];
     })
 
-
     useEffect(() => {
         setCount(1);
     },[])
     
+    console.log(basket)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -76,6 +76,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
     }
     
     localStorage.setItem('items', JSON.stringify(basket));
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
