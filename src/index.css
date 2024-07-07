@@ -25,7 +25,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  overflow: scroll;
+
 }
 
 .app {
@@ -486,8 +486,6 @@ cursor: pointer;
     height: 1px;
     background: white;
     margin-left: 63px;
-    /* z-index: 10;
-    position: absolute; */
 }
 
 #loginSection label:nth-child(2) div {
@@ -495,7 +493,6 @@ cursor: pointer;
   width: 60px;
   height: 1px;
   background: white;
-  /* position: absolute; */
   width: 70px;
 }
 
@@ -504,7 +501,6 @@ cursor: pointer;
   color: var(--font-color-light-black);
   z-index: 15;
   text-align: left;
-  /* position: absolute; */
   margin-left: 71px;
   margin-top: -9px;
   font-size: 15px;
@@ -514,7 +510,6 @@ cursor: pointer;
   color: var(--font-color-light-black);
   z-index: 15;
   text-align: left;
-  /* position: absolute; */
   margin-left: 71px;
   margin-top: -10px;
   font-size: 15px;
@@ -593,6 +588,7 @@ input::placeholder {
   z-index: 10;
   background-color: var(--bg-color-light-blue);
   margin: 0 auto;
+  overflow: scroll;
 }
 
 #registrationSection #imgId {
@@ -631,46 +627,6 @@ input::placeholder {
 #registrationSection h3 {
   margin-bottom: 16px;
 }
-
-/* #registrationSection .firstDiv {
-  width: 48px;
-  height: 1px;
-  background: white;
-  margin-left: 58px;
-  z-index: 9;
-}
-
-#registrationSection .secondDiv {
-  width: 80px;
-  height: 1px;
-  background: white;
-  margin-left: 26px;
-  z-index: 9;
-}
-
-#registrationSection .thirdDiv {
-  width: 68px;
-  height: 1px;
-  background: white;
-  margin-left: 26px;
-  z-index: 9;
-}
-
-#registrationSection .fourthDiv {
-  width: 78px;
-  height: 1px;
-  background: white;
-  margin-left: 26px;
-  z-index: 9;
-}
-
-#registrationSection .fifthDiv {
-  width: 133px;
-  height: 1px;
-  background: white;
-  margin-left: 26px;
-  z-index: 9;
-} */
 
   #registrationSection button {
     width: 318px;
@@ -746,8 +702,6 @@ input::placeholder {
     cursor:text;
   }
 
-
-
   #forgottenPasswordSection label {
     margin: 0;
   }
@@ -768,23 +722,9 @@ input::placeholder {
 
   #forgottenPasswordSection h5 {
     color: var(--font-color-light-black);
-    /* position: absolute; */
     text-align: left;
     font-size: 15px;
-    /* z-index: 15; */
   }
-
-  /* #forgottenPasswordSection h5::before {
-  content: '';
-  display: block;
-  width: 65px;
-  height: 1px;
-  background: white;
-  position: absolute;
-  top: 8px;
-  z-index: -1;
-  left: -10px;
-  } */
 
   #forgottenPasswordSection p:last-child {
     margin-top: 16px;
@@ -849,9 +789,7 @@ input::placeholder {
   color: var(--font-color-light-black);
   text-align: left;
   left: 71px;
-  /* position: absolute; */
   top: 167px;
-  /* z-index: 15; */
   font-size: 15px;
 }
 
@@ -859,9 +797,7 @@ input::placeholder {
   color: var(--font-color-light-black);
   text-align: left;
   left: 71px;
-  /* position: absolute; */
   top: 242px;
-  /* z-index: 15; */
   font-size: 15px;
 }
 
@@ -871,7 +807,6 @@ input::placeholder {
   width: 122px;
   height: 1px;
   background: white;
-  /* position: absolute; */
   top: 9px;
   z-index: -1;
   left: -10px;
@@ -883,7 +818,6 @@ input::placeholder {
   width: 176px;
   height: 1px;
   background: white;
-  /* position: absolute; */
   top: 9px;
   z-index: -1;
   left: -10px;
