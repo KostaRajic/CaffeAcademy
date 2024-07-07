@@ -3,8 +3,8 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
-import {useMemo } from 'react'
 import EmptyBasketImg from '../assets/Image/RegistredImages/BasketImg.png'
+import LazyLoad from 'react-lazyload';
 
 export const EmptyBasket = (props) => {
 

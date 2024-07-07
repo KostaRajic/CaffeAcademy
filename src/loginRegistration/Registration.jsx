@@ -27,7 +27,7 @@ export const Registration = () => {
         }})
         const [ formErrors, setFormErrors ] = useState({});
         const [ isSubmit, setIsSubmit ] = useState(false)
-
+        console.log('formErrors', formErrors)
 
         const handleChange = (e) => {
                 const {name, value} = e.target;
@@ -82,9 +82,7 @@ export const Registration = () => {
                 else if (values.lastName.length > 20) {
                         errors.lastName = 'Prezime mora da sadrži najviše 20 znakova alfabeta.'
                 }
-                if (!values.email.includes('@')) {
-                        errors.email = 'Pogrešan format e-mail adrese.'
-                } else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
+                else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
                 } else if (values.password.split('').every((e => !/[a-z]/.test(e)))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
