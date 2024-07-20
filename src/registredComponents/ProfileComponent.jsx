@@ -3,10 +3,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-undef */
-import background from '../assets/Image/RegistredImages/CoffeeBackground.jpg'
+import background from '../assets/Image/RegistredImages/CoffeeBackground.png'
 import ellipse from '../assets/Image/Header Images/ellipse.png'
 import cancel from '../assets/Image/RegistredImages/cancel.png'
 import editBtn from '../assets/Image/RegistredImages/editBtn.png'
+import coffeeToGo from '../assets/Image/RegistredImages/coffeeToGo.png'
 import { useEffect, useRef, useState } from 'react'
 import { useContextAuth } from '../context/ModalContext'
 
@@ -20,9 +21,9 @@ export const Profile = () => {
     const nameFocus = useRef(null);
     const lastNameFocus = useRef(null);
     const emailFocus = useRef(null);
-    const { setShowPopUpProfileIcon } = useContextAuth();
+    const { basket, setBasket } = useContextAuth()
+    const { setShowPopUpProfileIcon, sumOfCoffee } = useContextAuth();
     let { coffeeBasket, setCoffeeBasket } = useContextAuth();
-    const [ coffeeCups, setCofffeeCups ] = useState(10);
     const orderHistory = useRef(null)
 
 
@@ -85,7 +86,6 @@ export const Profile = () => {
                         <img 
                         src={editBtn} 
                         alt="Edit1"
-                        
                         onClick={handleEditClick} />
 
                     <input 
@@ -122,9 +122,9 @@ export const Profile = () => {
                 </form>
 
                 <section className='coffeeToGo'>
-                    <p><span>{coffeeBasket}</span>/<span>10</span></p>
+                    <p><span>{sumOfCoffee}</span>/<span>10</span></p>
                     <div>
-                    { [...Array(coffeeCups)].map((cup, index) => {
+                    { [...Array(10)].map((cup, index) => {
                         index += 1
  
                         return  <div key={index}>
@@ -132,7 +132,7 @@ export const Profile = () => {
                         key={index}
                         src={coffeeToGo}
                         alt="Coffee to go"
-                        style={ coffeeBasket < index ? {opacity: '40%'} : {opacity: '100%'}} 
+                        style={ sumOfCoffee < index ? {opacity: '40%'} : {opacity: '100%'}} 
                         />
                         </div>
                     })}
@@ -142,8 +142,8 @@ export const Profile = () => {
                 <section className='orderHistory'>
                     <h4>Istorija narudžbina</h4>
                     <div>
-                        {coffeeItems.map(coffee => 
-                                <p>{coffee.date} {coffee.coffeeName}</p>
+                        {basket.map(coffee => 
+                                <p>{coffee.date} {coffee.coffeeName} {coffee.count > 1 ? `(${coffee.count})` : ''}</p>
                         )}
                     </div>
                 </section>

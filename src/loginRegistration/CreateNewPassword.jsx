@@ -12,10 +12,12 @@ export const CreateNewPassword = ({ backFromCreate }) => {
       password: '',
       confirmPassword: ''
    });
+
    const [ showPassSuccess, setShowPassSuccess ] = useState(false);
    const [ showPassError, setShowPassError ] = useState(false)
    const [ formErrors, setFormErrors ] = useState({});
-
+   const [ isSubmit, setIsSubmit ] = useState(false)
+   console.log(formErrors)
    const handleChange = (e) => {
       const { name, value } = e.target
       setUser((prev) => ({
@@ -25,11 +27,14 @@ export const CreateNewPassword = ({ backFromCreate }) => {
    }
 
    const handleSubmit = (e) => {
+      if ((Object.keys(formErrors).length === 0 && isSubmit)) {
+         setShowPassSuccess(true)  
+      } else if (Object.keys(formErrors).length !== 0) {
+         setShowPassError(true)
+      }
       e.preventDefault();
-      if (user.password === user.confirmPassword) {
-         setShowPassSuccess(!showPassSuccess)
-   } 
-   backFromCreate('goBack')
+      setFormErrors(validate(user))
+      setIsSubmit(true)
 }
 
    useEffect(() => {
@@ -40,24 +45,26 @@ export const CreateNewPassword = ({ backFromCreate }) => {
    }, [user])
 
 
-//    const validate = (values) => {
-//       const errors = {};
-
-//       if (!user.password) {
-//                 setShowPassError(true)
-//       } else if (!user.confirmPassword) {
-//                 setShowPassError(true)
-//       } else if (user.password.split('').every(e => e !== e.toLowerCase())) {
-//                 setShowPassError(true)
-//       } else if (user.password.split('').every(e => e !== e.toUpperCase())) {
-//                 setShowPassError(true)
-//       } else if (user.password.split('').map(e => Number(e)).every(e => isNaN(e))) {
-//                 setShowPassError(true)
-//       } else if (user.password.length < 8) {
-//                 setShowPassError(true)
-//       } 
-// return errors    
-// }
+   const validate = (values) => {
+      const errors = {};
+      
+      if (!values.password) {
+              errors.password = 'Lozinka je neophodna.'
+      } else if (!values.confirmPassword) {
+              errors.confirmPassword = 'Lozinka je neophodna.'
+      } else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
+              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+      } else if (values.password.split('').every((e => !/[a-z]/.test(e)))) {
+              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+      } else if (values.password.split('').map(e => Number(e)).every(e => isNaN(e))) {
+              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+      } else if (values.password.length < 8) {
+              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'   
+      } else if (values.password !== values.confirmPassword) {
+              errors.confirmPassword = 'Lozinke se ne podudaraju.'
+}
+return errors    
+}
 
     return <div id="createNewPasswordSection">
          <img src={AcademyImg} alt="AcademyImg" />
@@ -76,7 +83,7 @@ export const CreateNewPassword = ({ backFromCreate }) => {
 
             <button type='submit'>Kreiraj</button>
          </form>
-        { showPassSuccess && <PasswrodSuccess/>}
-        {/* { showPassError && <PasswordError />} */}
+        { showPassSuccess && <PasswrodSuccess/> }
+        { showPassError && <PasswordError tryAgain={() => setShowPassError(false)} /> }
         </div>
 }

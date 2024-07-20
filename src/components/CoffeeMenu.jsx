@@ -11,7 +11,7 @@ import plus from '../assets/Image/Main Section Images/plus.png'
 import { CoffeeInfo } from '../registredComponents/CoffeeInfo';
 import { useContextAuth } from '../context/ModalContext';
 import { coffeeArr } from '../fileWithCoffee/Coffee';
-const LazyCoffeeInfo = React.lazy(() => import('../registredComponents/CoffeeInfo'))
+
 
 export const CoffeeMenu = () => {
     const [ coffeeName, setCoffeeName ] = useState(false);
@@ -26,189 +26,6 @@ export const CoffeeMenu = () => {
         }
     }
 
-
-    // const handleSubmit1 = () => {
-    //     if (isLoggedIn) {
-    //         setShowCoffeeInfo(!showCoffeeInfo)
-    //         setCoffeeName(esspresoKratki.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit2 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(esspresoKratkiSaMlekom.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit3 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(esspresoDugi.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit4 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(esspresoDugiSaMlekom.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit5 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(americano.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit6 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(americanoSaMlekom.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit7 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(macchiato.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit8 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(esspresoMacchiato.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit9 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(cappuccino.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit10 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(latte.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit11 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(mochaBelaChocolada.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit12 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(mochaCrnaChocolada.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit13 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(mochaLesnik.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit14 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(flatWhite.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit15 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(lungoRisstreto.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit16 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(affogato.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit17 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(affogatoSaSladoledom.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit18 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(frappuccino.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit19 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(turkishCoffee.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit20 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(turkishCoffeeSaMlekom.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit21 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(coldBrew.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit22 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(coldBrewSaMlekom.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit23 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(iceCoffee.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit24 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(iceCoffeeSaSladoledom.current.textContent)
-    //     }   
-    // }
-
-    // const handleSubmit25 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(iceCoffeeSaMlekom.current.textContent)
-    //     }
-    // }
-
-    // const handleSubmit26 = () => {
-    //     if (isLoggedIn) {
-    //     setShowCoffeeInfo(!showCoffeeInfo)
-    //     setCoffeeName(toplaCokolada.current.textContent)
-    //     }
-    // }
-
     
     return <section className='coffee-menu-section'>
 
@@ -217,14 +34,14 @@ export const CoffeeMenu = () => {
         <div className='coffee-cart'>
             {coffeeArr.map((coffee, inx) => 
                 <div key={coffee.id}>
-                <img src={cupOfCoffee} alt='Cup of coffee' />
-                <h2 style={{ width: '80%',height: '40px'}}>{coffee.name}</h2>
-                <p>{coffee.text}</p>
-                <button 
-                onClick={() => handleSubmit(inx)}
-                type='button' 
-                ><img src={plus} alt="Plus" /></button>
-            </div>)}
+                    <img src={cupOfCoffee} alt='Cup of coffee' />
+                    <h2 style={{ width: '80%',height: '40px'}}>{coffee.name}</h2>
+                    <p>{coffee.text}</p>
+                    <button 
+                    onClick={() => handleSubmit(inx)}
+                    type='button' 
+                    ><img src={plus} alt="Plus" /></button>
+                </div>)}
             
             
             {/* <div key={inx}>

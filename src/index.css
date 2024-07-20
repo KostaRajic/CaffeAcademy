@@ -463,6 +463,11 @@ cursor: pointer;
   z-index: 16;
   background-color: var(--bg-color-light-blue);
   margin: 0 auto;
+  overflow: scroll;
+}
+
+#loginSection::-webkit-scrollbar {
+  display: none;
 }
 
 #loginSection img {
@@ -480,23 +485,14 @@ cursor: pointer;
   margin-bottom: 23px;
 }
 
-#loginSection label:nth-child(1) div {
+#loginSection label div {
     width: 61px;
     height: 1px;
     background: white;
     margin-left: 63px;
 }
 
-#loginSection label:nth-child(2) div {
-  margin-left: 63px;
-  width: 60px;
-  height: 1px;
-  background: white;
-  width: 70px;
-}
-
-
-#loginSection label:nth-child(1) h5 {
+#loginSection label h5 {
   color: var(--font-color-light-black);
   z-index: 15;
   text-align: left;
@@ -505,17 +501,7 @@ cursor: pointer;
   font-size: 15px;
 }
 
-#loginSection label:nth-child(2) h5{
-  color: var(--font-color-light-black);
-  z-index: 15;
-  text-align: left;
-  margin-left: 71px;
-  margin-top: -10px;
-  font-size: 15px;
-}
-
-
-#loginSection label:nth-child(1) input {
+#loginSection label input {
   width: 318px;
   height: 50px;
   border: 1px solid rgba(37, 37, 37, 0.5);
@@ -528,20 +514,6 @@ cursor: pointer;
   margin-bottom: 24px;
 }
 
-#loginSection label:nth-child(2) input {
-  width: 318px;
-  height: 50px;
-  border: 1px solid rgba(37, 37, 37, 0.5);
-  border-radius: 10px;
-  background-color: var(--bg-color-white);
-  padding: 16px 161px 12px 34px;
-  font-weight: 400;
-  line-height: 21.94px;
-  color: var(--font-color);
-
-}
-
-
 input::placeholder {
   color: rgba(0, 0, 0, 0.4);
   font-weight: 400;
@@ -549,7 +521,7 @@ input::placeholder {
   line-height: 21.94px;
 }
 
-#loginSection p {
+#loginSection #loginSectionId  {
   color: var(--font-color);
   font-size: 16px;
   line-height: 19.5px;
@@ -788,46 +760,6 @@ input::placeholder {
   margin-top: 40px;
 }
 
-#createNewPasswordSection label:nth-child(1) h5 {
-  color: var(--font-color-light-black);
-  text-align: left;
-  left: 71px;
-  top: 167px;
-  font-size: 15px;
-}
-
-#createNewPasswordSection label:nth-child(2) h5 {
-  color: var(--font-color-light-black);
-  text-align: left;
-  left: 71px;
-  top: 242px;
-  font-size: 15px;
-}
-
-#createNewPasswordSection h5::before {
-  content: '';
-  display: block;
-  width: 122px;
-  height: 1px;
-  background: white;
-  top: 9px;
-  z-index: -1;
-  left: -10px;
-  }
-
-  #createNewPasswordSection label:nth-child(2) h5::before {
-    content: '';
-  display: block;
-  width: 176px;
-  height: 1px;
-  background: white;
-  top: 9px;
-  z-index: -1;
-  left: -10px;
-  font-size: 15px;
-  }
-
-
 /* Password Error */
 
 
@@ -846,7 +778,7 @@ input::placeholder {
   margin: 32px auto;
 }
 
-.error {
+#error {
   display: flex;
   padding: 24px 15px 24px 7px;
   margin: 16px 35px 41px 37px;
@@ -869,7 +801,7 @@ input::placeholder {
   cursor: pointer;
 }
 
-#passwordError .error img {
+#passwordError #error img {
   width: 24px;
   height: 24px;
   margin-bottom: 79px;
@@ -878,12 +810,13 @@ input::placeholder {
   margin-right: 9px;
 }
 
-#passwordError .error p {
+#passwordError #error p {
   font-weight: 400;
   font-size: 16px;
   line-height: 19.5px;
   color: var(--font-color);
   text-align: left;
+  margin: 0;
 }
 
 /* Passwrod Success */
@@ -1107,7 +1040,7 @@ height: 30px;
   background-size: 550px 100%;
   background-position: -80px;
   background-repeat: no-repeat;
-  background-image:url(./assets/Image/RegistredImages/CoffeeBackground1.jpg);
+  background-image:url(./assets/Image/RegistredImages/CoffeeBackground.png);
   width: 390px;
   margin: 0 auto;
   position: fixed;
@@ -1197,7 +1130,7 @@ height: 30px;
 }
 
 .coffee-info {
-  background-image:url(./assets/Image/RegistredImages/CoffeeBackground1.jpg);
+  background-image:url(./assets/Image/RegistredImages/CoffeeBackground.png);
   background-size: 550px 100%;
   background-position: -80px 50px;
   background-repeat: no-repeat;
@@ -1205,9 +1138,11 @@ height: 30px;
 }
 
 .imgColor {
+  inset: 0;
   background-color: rgba(109, 203, 255, 0.5);
-  height: 100%;
+  position: absolute;
 }
+
 
 .imgColor h4 {
   color: var(--font-color);
@@ -1631,6 +1566,63 @@ height: 30px;
   line-height: 19.5px;
 }
 
+
+/* Full Basket */
+
+.fullBasket {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+}
+
+.fullBasketClass {
+  width: 246px;
+  height: 200px;
+  background-color: rgb(227 0 0);
+  border-radius: 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+
+.closeBtn {
+ position: absolute;
+ top: 15px;
+ right: 15px;
+ border: 2px solid white;
+ border-radius: 50%;
+ padding: 5px;
+ cursor: pointer;
+ transition: 0,3s ease-in;
+}
+
+.closeBtn:hover {
+  transform: scale(1.1);
+}
+
+.closeBtn:active {
+  transform: scale(0.9);
+}
+
+.fullBasketClass p {
+  text-align: center;
+  margin: 20%;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24.5px;
+}
+
+
+
 .profileLoginPopUpModal {
   position: absolute;
   inset: 50%;
@@ -1678,7 +1670,7 @@ height: 30px;
 /* Profile Component */
 
 .profileBackground {
-  background-image:url(./assets/Image/RegistredImages/CoffeeBackground1.jpg);
+  background-image:url(./assets/Image/RegistredImages/CoffeeBackground.png);
   background-size: 550px 100%;
   background-position: -80px;
   background-repeat: no-repeat;
@@ -1891,6 +1883,11 @@ height: 30px;
   border: none;
   border-radius: 10px;
   height: 149px;
+  overflow: scroll;
+}
+
+.orderHistory div::-webkit-scrollbar {
+  display: none;
 }
 
 .orderHistory div p {
@@ -1909,7 +1906,7 @@ height: 30px;
 }
 
 .myOrderComponent .myOrderClass {
-  background-image:url(./assets/Image/RegistredImages/CoffeeBackground1.jpg);
+  background-image:url(./assets/Image/RegistredImages/CoffeeBackground.png);
   background-size: 550px 100%;
   background-position: -80px 32px;
   background-repeat: no-repeat;
@@ -1921,6 +1918,7 @@ height: 30px;
   height: 100%;
   position: absolute;
   inset: 0;
+  overflow: scroll;
 }
 
 .myOrderComponent .headerClass img {

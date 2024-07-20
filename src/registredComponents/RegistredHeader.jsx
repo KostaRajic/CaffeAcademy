@@ -19,25 +19,19 @@ export const RegistredHeader = () => {
     const firstLetter = useRef(null);
     const secondLetter = useRef(null);
     const [ showBasket, setShowBasket ] = useState(false);
-    const { showPopUpProfileIcon, setShowPopUpProfileIcon } = useContextAuth()
-    let { coffeeBasket, setCoffeeBasket } = useContextAuth(0);
-    let { count } = useContextAuth()
+    const { showPopUpProfileIcon, setShowPopUpProfileIcon, coffeeBasket, sumOfCoffee } = useContextAuth()
     const [ showProfileOrder, setProfileOrder ] = useState(false)
-    let [ coffeeItems, setCoffeeItems ] = useState({})
+
+    console.log('sumOfCoffee', sumOfCoffee)
 
     const handleTurnOffPopUpModal = (state) => {
         state == 'turn-off' ? setShowPopUpProfileIcon(false) : setShowPopUpProfileIcon(true)
     }
 
-
-    useEffect(() => {
-        setCoffeeItems(coffeeItems ? JSON.parse(localStorage.getItem('items')) : {})
-    }, [])
-
     const lsUser = JSON.parse(localStorage.getItem('user'));
 
     const handleBasket = () => {
-        coffeeItems && coffeeItems.length > 0 ? setProfileOrder(true) : setShowBasket(true)
+        sumOfCoffee && sumOfCoffee > 0 ? setProfileOrder(true) : setShowBasket(true)
     }
 
     const handleProfilePopUpIcon = () => {
@@ -67,24 +61,24 @@ export const RegistredHeader = () => {
                     <p className='secondLetter' ref={secondLetter} ></p>
                 </div>
 
-                <div className='reg-coffee-img' style={{cursor: 'pointer'}}>
+                <div className='reg-coffee-img' style={{cursor: 'pointer'}} onClick={handleBasket}>
                     <img 
                     src={coffeeToGo} 
                     alt='Coffee to go Logo' 
-                    onClick={handleBasket}
+                    
                     />
                     <img 
-                    style={ coffeeItems ? {display: 'block'} :  {display: 'none'}}
+                    style={ sumOfCoffee ? {display: 'block'} :  {display: 'none'}}
                     src={ellipse} 
                     alt="Number of coffees"
                     className='ellipse'
                     /> 
                     <p 
                     className='countClass'
-                    style={ coffeeItems && coffeeItems.length < 1 ? {display: 'none'} : {display: 'block'} ||
-                    coffeeItems && coffeeItems.length >= 1 && coffeeItems.length < 10 ? {marginLeft: '-12px'} : {marginLeft: '-14px'}} 
+                    style={ sumOfCoffee < 10 ? {marginLeft: '-12px'} : {marginLeft: '-15px'} || sumOfCoffee == 10 ? {marginLeft: '-15px'} : '' }  
                     >
-                    {coffeeItems ? coffeeItems.length : ''}</p>
+                    { sumOfCoffee }
+                    </p>
                 </div>
             </div>
             { showBasket && <EmptyBasket  goBack={b => setShowBasket(b)}/>}

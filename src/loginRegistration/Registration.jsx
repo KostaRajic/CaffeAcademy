@@ -16,7 +16,7 @@ export const Registration = () => {
         const { showModal, setShowModal, showModal2, setShowModal2 } = useContextAuth();
         const [ confirmEmail, setConfirmEmail ] = useState(false);
         const [ showLogin, setShowLogin ] = useState(false)
-        const [ formData, setFormData ] = useState(() => () => {
+        const [ formData, setFormData ] = useState(() => {
                 const savedItems = localStorage.getItem('user');
                 return savedItems ? JSON.parse(savedItems) : {
                 name: '',
@@ -27,7 +27,6 @@ export const Registration = () => {
         }})
         const [ formErrors, setFormErrors ] = useState({});
         const [ isSubmit, setIsSubmit ] = useState(false)
-        console.log('formErrors', formErrors)
 
         const handleChange = (e) => {
                 const {name, value} = e.target;
@@ -40,8 +39,7 @@ export const Registration = () => {
         const handleSubmit = (e) => {
                 e.preventDefault()
                 if ((Object.keys(formErrors).length === 0 && isSubmit)) {
-                        setConfirmEmail(!confirmEmail)
-                        localStorage.removeItem('items')
+                        setConfirmEmail(!confirmEmail)  
                 }
                 setFormErrors(validate(formData))
                 setIsSubmit(true)
@@ -64,7 +62,7 @@ export const Registration = () => {
 
         const validate = (values) => {
                 const errors = {};
-
+                
                 if (!values.name) { 
                         errors.name = 'Ime je neophodno.'
                 } else if (!values.lastName) {
@@ -81,8 +79,7 @@ export const Registration = () => {
                 }
                 else if (values.lastName.length > 20) {
                         errors.lastName = 'Prezime mora da sadrži najviše 20 znakova alfabeta.'
-                }
-                else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
+                } else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
                 } else if (values.password.split('').every((e => !/[a-z]/.test(e)))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
@@ -94,7 +91,6 @@ export const Registration = () => {
                         errors.confirmPassword = 'Lozinke se ne podudaraju.'
         }
         return errors    
-
 }
 
     return  <div id="registrationSection">
@@ -111,31 +107,31 @@ export const Registration = () => {
                 <label htmlFor="name">
                         <h5>Ime*</h5>
                         <div className='firstDiv'></div>
-                        <input type='text' name='name' value={formData.name} onChange={handleChange} placeholder="Ime" id='name' />
+                        <input type='text' name='name' onChange={handleChange} placeholder="Ime" id='name' />
                 </label>
                         {formErrors.name && <p className='errorMsg'>{formErrors.name}</p>}
                 <label htmlFor="lastName">
                         <h5>Prezime*</h5>
                         <div className='secondDiv'></div>
-                        <input type='text' name='lastName' value={formData.lastName} onChange={handleChange} placeholder="Prezime" id='password' />
+                        <input type='text' name='lastName' onChange={handleChange} placeholder="Prezime" id='password' />
                 </label>
                         {formErrors.lastName && <p className='errorMsg'>{formErrors.lastName}</p>}
                 <label htmlFor="e-mail">
                         <h5>E-mail*</h5>
                         <div className='thirdDiv'></div>
-                        <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder="E-mail adresa" id='e-mail' />
+                        <input type='email' name='email' onChange={handleChange} placeholder="E-mail adresa" id='e-mail' />
                 </label>
                         {formErrors.email && <p className='errorMsg'>{formErrors.email}</p>}
                 <label htmlFor="password">
                         <h5>Lozinka*</h5>
                         <div className='fourthDiv'></div>
-                        <input type='text' name='password' value={formData.possword} onChange={handleChange} placeholder="Lozinka" id='password' />
+                        <input type='text' name='password' onChange={handleChange} placeholder="Lozinka" id='password' />
                 </label>
                         {formErrors.password && <p className='errorMsg'>{formErrors.password}</p>}
                 <label htmlFor="confirmPassword">
                         <h5>Ponovi Lozinku*</h5>
                         <div className='fifthDiv'></div>
-                        <input type='text' name='confirmPassword' value={formData.confirmPassword} onChange={handleChange} placeholder="Ponovi Lozinku" id='confirmPassword' />
+                        <input type='text' name='confirmPassword' onChange={handleChange} placeholder="Ponovi Lozinku" id='confirmPassword' />
                 </label>
                         {formErrors.confirmPassword && <p className='errorMsg'>{formErrors.confirmPassword}</p>}
     <button type='submit'>Registruj se</button>

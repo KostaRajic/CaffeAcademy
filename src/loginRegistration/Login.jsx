@@ -75,7 +75,7 @@ export const Login = () => {
                <div></div>
                <input type='password' name='password' placeholder="Lozinka" id='password' value={user.password}  onChange={handleChange}/>
             </label>
-            <p onClick={handleWithForgottenPass}>Zaboravljena lozinka?</p>
+            <p onClick={handleWithForgottenPass} id='loginSectionId'>Zaboravljena lozinka?</p>
             <button type='submit'>Prijavi Se</button>
          </form>
          { forgottenPassword && <ForgottenPassword backFromForgotten={(e) => backFromForgotten(e)}/>}

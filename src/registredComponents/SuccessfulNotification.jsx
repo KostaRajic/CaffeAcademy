@@ -4,12 +4,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ReactDOM, { createPortal } from 'react-dom'
 import { faThumbsUp, faX } from '@fortawesome/free-solid-svg-icons'
-import { Children } from 'react'
 import { useContextAuth } from '../context/ModalContext'
 
 
 
-export const SuccessfulNotificationPortal = ({closeModal}) => {
+export const SuccessfulNotificationPortal = () => {
     const { showCoffeeInfo, setShowCoffeeInfo } = useContextAuth()
 
     const handleBackFromPortal = () => {

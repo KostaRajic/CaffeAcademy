@@ -19,9 +19,8 @@ export const ForgottenPassword = ({backFromForgotten}) => {
         }))
     }
 
-    const handleBack = (state) => {
+    const handleBack = () => {
         backFromForgotten('goBack');
-        state === 'goBack' ? setCreatePass(false) : setCreatePass(true)
     }
 
     const handleSubmit = (e) => {
@@ -49,11 +48,11 @@ export const ForgottenPassword = ({backFromForgotten}) => {
         
     </form>
 
-    <p>Vrati se na <span 
+    <p className='forgottenPassClass'>Vrati se na <span 
         onClick={handleBack}
         style={{cursor: 'pointer'}}
         >Prijavu.</span></p>
-    { createPass && <CreateNewPassword backFromCreate={(e) => handleBack(e)}/>}
+    { createPass && <CreateNewPassword/> }
     
     </div>
 }
