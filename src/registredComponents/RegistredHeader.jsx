@@ -6,23 +6,20 @@
 /* eslint-disable react/no-unknown-property */
 import logo from '../assets/Image/Header Images/academy-logo.png'
 import coffeeToGo from '../assets/Image/Header Images/coffee-to-go.png'
-import coffeeNumber from '../assets/Image/Header Images/coffee-number.png'
 import profilePopUp from '../assets/Image/Header Images/ellipse.png'
 import ellipse from '../assets/Image/Header Images/ellipse.png'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import timelapse from '../assets/Image/RegistredImages/timelapse.png'
+import { useState } from 'react'
 import { EmptyBasket } from './EmptyBasket'
 import { ProfilePortal } from './ProfilePortal'
 import { useContextAuth } from '../context/ModalContext'
 import { MyOrder } from './MyOrder'
+import { PreparationPhase } from './PreparationPhase'
 
 export const RegistredHeader = () => {
-    const firstLetter = useRef(null);
-    const secondLetter = useRef(null);
     const [ showBasket, setShowBasket ] = useState(false);
-    const { showPopUpProfileIcon, setShowPopUpProfileIcon, coffeeBasket, sumOfCoffee } = useContextAuth()
-    const [ showProfileOrder, setProfileOrder ] = useState(false)
-
-    console.log('sumOfCoffee', sumOfCoffee)
+    const { showPopUpProfileIcon, setShowPopUpProfileIcon, sumOfCoffee, showProfileOrder, setProfileOrder, preparingCoffee } = useContextAuth()
+    const [ preparationPhase, setPreparationPhase ] = useState(false)
 
     const handleTurnOffPopUpModal = (state) => {
         state == 'turn-off' ? setShowPopUpProfileIcon(false) : setShowPopUpProfileIcon(true)
@@ -38,16 +35,18 @@ export const RegistredHeader = () => {
         setShowPopUpProfileIcon(true)
     }
 
-    useEffect(() => {
-        firstLetter.current.textContent = lsUser.name[0].toUpperCase();
-        secondLetter.current.textContent = lsUser.lastName[0].toUpperCase();
-    }, [])
-
     return (
         <header className="header">
             <img src={logo} alt='Academy Logo' />
             <div className='right-side'>
-         
+                { preparingCoffee ? <>
+                <img 
+                src={timelapse} 
+                alt='Time Lapse'
+                style={{marginRight: '18px'}}
+                onClick={() => setPreparationPhase(true)}
+                 />
+
                 <div 
                 className='regIcons'
                 onClick={handleProfilePopUpIcon}
@@ -57,8 +56,53 @@ export const RegistredHeader = () => {
                     className='reg-profile-img' 
                     alt="Profile Circle" 
                     />
-                    <p className='firstLetter' ref={firstLetter} ></p>
-                    <p className='secondLetter' ref={secondLetter} ></p>
+                    <p className='firstLetter' >
+                        {lsUser.name[0].toUpperCase()}
+                    </p>
+                    <p className='secondLetter'>
+                        {lsUser.lastName[0].toUpperCase()}
+                    </p>
+                    
+                </div>
+
+                <div className='reg-coffee-img' style={{cursor: 'pointer'}} onClick={handleBasket}>
+                    <img 
+                    src={coffeeToGo} 
+                    alt='Coffee to go Logo' 
+                    />
+                    
+                    <img 
+                    style={ sumOfCoffee <= 10 && sumOfCoffee >= 1 ? {display: 'block'} :  {display: 'none'} }
+                    src={ellipse} 
+                    alt="Number of coffees"
+                    className='ellipse'
+                    /> 
+                    
+                    <p 
+                    className='countClass'
+                    style={ sumOfCoffee <= 10 && sumOfCoffee >= 1 ? {marginLeft: '-12px'} : {marginLeft: '-15px'} || sumOfCoffee == 10 ? {marginLeft: '-15px'} : '' }  
+                    >
+                    { sumOfCoffee <= 10 && sumOfCoffee >= 1 ? sumOfCoffee : ''}
+                    </p>
+                </div>
+                </> 
+                :
+                <>
+                <div 
+                className='regIcons'
+                onClick={handleProfilePopUpIcon}
+                >
+                    <img 
+                    src={profilePopUp} 
+                    className='reg-profile-img' 
+                    alt="Profile Circle" 
+                    />
+                    <p className='firstLetter' >
+                        {lsUser.name[0].toUpperCase()}
+                    </p>
+                    <p className='secondLetter'>
+                        {lsUser.lastName[0].toUpperCase()}
+                    </p>
                 </div>
 
                 <div className='reg-coffee-img' style={{cursor: 'pointer'}} onClick={handleBasket}>
@@ -68,22 +112,25 @@ export const RegistredHeader = () => {
                     
                     />
                     <img 
-                    style={ sumOfCoffee ? {display: 'block'} :  {display: 'none'}}
+                    style={ sumOfCoffee <= 10 && sumOfCoffee >= 1 ? {display: 'block'} :  {display: 'none'} }
                     src={ellipse} 
                     alt="Number of coffees"
                     className='ellipse'
                     /> 
                     <p 
                     className='countClass'
-                    style={ sumOfCoffee < 10 ? {marginLeft: '-12px'} : {marginLeft: '-15px'} || sumOfCoffee == 10 ? {marginLeft: '-15px'} : '' }  
+                    style={ sumOfCoffee <= 10 && sumOfCoffee >= 1 ? {marginLeft: '-12px'} : {marginLeft: '-15px'} || sumOfCoffee == 10 ? {marginLeft: '-15px'} : '' }  
                     >
-                    { sumOfCoffee }
+                    { sumOfCoffee <= 10 && sumOfCoffee >= 1 ? sumOfCoffee : ''}
                     </p>
                 </div>
+                </>
+                }
             </div>
             { showBasket && <EmptyBasket  goBack={b => setShowBasket(b)}/>}
             { showProfileOrder && <MyOrder goBack={(() => setProfileOrder())}/>}
             { showPopUpProfileIcon && <ProfilePortal clickOutside={handleTurnOffPopUpModal}/>}
+            { preparationPhase && <PreparationPhase />}
         </header>
     )
 }

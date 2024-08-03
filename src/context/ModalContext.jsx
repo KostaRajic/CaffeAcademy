@@ -18,7 +18,8 @@ export const UseContextProvider = ({children}) => {
     const [ coffeeBasket, setCoffeeBasket ] = useState(0);
     const [ showPopUpProfileIcon, setShowPopUpProfileIcon ] = useState(false);
     const [ basket, setBasket ] = useState([])
-
+    const [ showProfileOrder, setProfileOrder ] = useState(false)
+    const [ preparingCoffee, setPreparingCoffee ] = useState(false)
 
     const sumOfCoffee = basket?.reduce((accumulator, currentValue) => {
         return accumulator + currentValue?.count
@@ -43,7 +44,11 @@ export const UseContextProvider = ({children}) => {
             setShowPopUpProfileIcon,
             basket, 
             setBasket,
-            sumOfCoffee
+            sumOfCoffee,
+            showProfileOrder,
+            setProfileOrder,
+            preparingCoffee, 
+            setPreparingCoffee
         }
     }, [
         showModal,
@@ -62,7 +67,11 @@ export const UseContextProvider = ({children}) => {
         setShowPopUpProfileIcon,
         basket, 
         setBasket,
-        sumOfCoffee
+        sumOfCoffee,
+        showProfileOrder,
+        setProfileOrder, 
+        preparingCoffee, 
+        setPreparingCoffee
     ])
 
     return <div>

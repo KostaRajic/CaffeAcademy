@@ -9,7 +9,7 @@
 /* eslint-disable no-unreachable */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import cupOfCoffee from '../assets/Image/Main Section Images/cup-of-coffee.png'
 import coffeeGrain from '../assets/Image/RegistredImages/coffee-grain.png'
 import milk from '../assets/Image/RegistredImages/milk.png';
@@ -31,15 +31,23 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
         milk: '',
     });
     let { count, setCount, coffeeBasket, setCoffeeBasket, basket, setBasket, sumOfCoffee } = useContextAuth();
-    const [ date, setDate ] = useState(new Date())
+    const [ date, setDate ] = useState(new Date());
+    const smallPrice = useRef(null)
+    const mediumPrice = useRef(null)
+    const largePrice = useRef(null)
 
-    console.log('coffeeBasket', coffeeBasket)
-    console.log('sumOfCoffee', sumOfCoffee)
-    console.log('basket', basket)
+    let smallCoffeePrice = parseInt(smallPrice?.current?.innerText.slice(0, 3))
+    let mediumCoffeePrice = parseInt(mediumPrice?.current?.innerText.slice(0, 3))
+    let largeCoffeePrice = parseInt(largePrice?.current?.innerText.slice(0, 3))
+
 
     useEffect(() => {
         setCount(1);
     },[])
+
+    useEffect(() => {  
+        setCoffeeBasket(sumOfCoffee)
+    }, [])
 
         const handleChange = (e) => {
             const { name, value } = e.target;
@@ -52,7 +60,8 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
 
         const handleMinusCount = () => {
             setCount(prev => prev - 1)
-            if (count == 1) {
+            if (sumOfCoffee !== 10 ) {
+             if (count == 1) {
                 setCount(1)
                 
             }   else if ( count == 2 ) {
@@ -60,207 +69,119 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
             }
                 else if ( sumOfCoffee >= 1 ) {
                     setCoffeeBasket(prev => prev - 1)
-            }
-        }
+            }}}
 
         const handlePlusCount = () => {
                 setCount(prev => prev + 1)
-                    if ( count == 1) {
+                    if (count == 1) {
                         setCoffeeBasket(prev => prev + 2)
                     } else setCoffeeBasket(prev => prev + 1)
         }
     
     const handleCoffeeCountSizeAndGrain = () => {
+        if (coffeeBasket < 10 && count <= 10) {
         setBasket(prevItems => {
             const itemExists = prevItems.find(item => item.grain === coffee.grain && item.size === coffee.size && item.coffeeName === coffeeName);
             if (itemExists) {
               return prevItems.map(item => 
                 item.grain === coffee.grain && item.size === coffee.size
-                  ? { ...item, count: item.count + 1 }
+                  ? { ...item, 
+                    price: coffee.size == 'small' && count * smallCoffeePrice ||
+                        coffee.size == 'medium' && count * mediumCoffeePrice ||
+                        coffee.size == 'large' && count * largeCoffeePrice,
+                    count: coffeeBasket <= 10 ? item.count + count : item.count
+                }
                   : item
               );
             } else { 
-              return [...prevItems, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: coffeeBasket <= 10 && count }];
+              return [...prevItems, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), 
+                    price: coffee.size == 'small' && count * smallCoffeePrice ||
+                            coffee.size == 'medium' && count * mediumCoffeePrice ||
+                            coffee.size == 'large' && count * largeCoffeePrice,
+                    count: coffeeBasket <= 10 && count }];
             }
-          })}
+          })
+        }}
 
     const handleCoffeeCountSizeAndMilk = () => {
+        if (coffeeBasket < 10) {
         setBasket(prevItems => {
             const itemExists = prevItems.find(item => item.milk === coffee.milk && item.size === coffee.size && item.coffeeName === coffeeName);
             if (itemExists) {
               return prevItems.map(item => 
                 item.milk === coffee.milk && item.size === coffee.size
-                  ? { ...item, count: item.count + 1 }
+                ? { ...item, 
+                    price: coffee.size == 'small' && count * smallCoffeePrice ||
+                        coffee.size == 'medium' && count * mediumCoffeePrice ||
+                        coffee.size == 'large' && count * largeCoffeePrice,
+                    count: coffeeBasket <= 10 ? item.count + count : item.count}
                   : item
               );
             } else {
-              return [...prevItems, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count }];
+              return [...prevItems, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), 
+                price: coffee.size == 'small' && count * smallCoffeePrice ||
+                        coffee.size == 'medium' && count * mediumCoffeePrice ||
+                        coffee.size == 'large' && count * largeCoffeePrice,
+                    count: coffeeBasket <= 10 && count }];
             }
-          })}
+          })
+        }}
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (coffeeName == 'Topla čokolada' && coffee.size !== '' && coffee.milk !== '') {
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-            if (basket.length === 0) {
-                setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            } else handleCoffeeCountSizeAndMilk()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
+            if (coffeeName == 'Topla čokolada' && coffee.size !== '' && coffee.milk !== '') {
+                if ( count == 1) {
+                    setCoffeeBasket(++coffeeBasket) 
+                }
+                if (basket.length === 0) {
+                    setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), 
+                        price: coffee.size == 'small' && count * smallCoffeePrice ||
+                        coffee.size == 'medium' && count * mediumCoffeePrice ||
+                        coffee.size == 'large' && count * largeCoffeePrice,
+                    count: coffeeBasket <= 10 && count}])
+                } else handleCoffeeCountSizeAndMilk()
+                    coffeeBasket <= 10 && count > 1 ? setAddToBasket(true) : setFullBasket(true)
         }
 
-        else if (coffeeName == 'Esspreso kratki' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            if ( count == 1 && coffeeBasket < 10) {
-            setCoffeeBasket(++coffeeBasket)
-            }
-            
-            if (basket.length === 0) {
-                setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-        }
-
-        else if (coffeeName == 'Esspreso dugi' && 
+        else if (coffeeName == 
+            'Esspreso kratki' || 
+            'Esspreso dugi' || 
+            'Americano' || 
+            'Lungo Ristretto' || 
+            'Affogato' || 
+            'Affogato sa sladoledom' || 
+            'Turkish Coffee' ||
+            'Cold Brew' ||
+            'Ice Coffee' || 
             coffee.size !== '' && 
             coffee.grain !== '') {
-                
-            if ( count == 1 && coffeeBasket < 10) {
-            setCoffeeBasket(++coffeeBasket)
-            }
 
-            if (basket.length === 0) {
-                setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-            }
-
-        else if (coffeeName == 'Americano' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            
             if ( count == 1) {
                 setCoffeeBasket(++coffeeBasket) 
             }
-            
-            if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
+    
+            if (basket.length === 0 && coffeeBasket <= 10 && count <= 10 ) {
+                setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), 
+                    price: coffee.size == 'small' && count * smallCoffeePrice ||
+                        coffee.size == 'medium' && count * mediumCoffeePrice ||
+                        coffee.size == 'large' && count * largeCoffeePrice,
+                    count: count}])
             }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-        }
-
-        else if (coffeeName == 'Lungo Ristretto' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            console.log(coffeeName)
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-            
-            if (basket.length === 0) {
-                setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-        }
-
-        else if (coffeeName == 'Affogato' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-            
-            if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-        }
-
-        else if (coffeeName == 'Affogato sa sladoledom' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-            
-            if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-        }
-
-        else if (coffeeName == 'Turkish Coffee' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-
-            if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-        }
-
-        else if (coffeeName == 'Cold Brew' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-
-            if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
-        }
-
-        else if (coffeeName == 'Ice Coffee' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-
-           if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true) 
-        }
-
-        else if (coffeeName == 'Ice Coffee sa sladoledom' && 
-        coffee.size !== '' && 
-        coffee.grain !== '') {
-            if ( count == 1) {
-                setCoffeeBasket(++coffeeBasket) 
-            }
-
-            if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
-            }  else handleCoffeeCountSizeAndGrain()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
+                coffeeBasket <= 10 && count >= 1 ? setAddToBasket(true) : setFullBasket(true)
         }
 
         else if (coffee.size !== '' && coffee.grain !== '' && coffee.milk !== '') {
+
             if ( count == 1) {
             setCoffeeBasket(++coffeeBasket) 
             }
 
             if (basket.length === 0) {
-            setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: count}])
+                setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), count: coffeeBasket <= 10 && count}])
             }  else handleCoffeeCountSizeAndMilk()
-            coffeeBasket <= 10 ? setAddToBasket(true) : setFullBasket(true)
+                coffeeBasket <= 10 && count >= 1 ? setAddToBasket(true) : setFullBasket(true)
     }
-
-    
-    
-    if (coffeeBasket > 10) {
-        setCoffeeBasket(sumOfCoffee)
-    }
-    
 }
 
     const handleClose = () => {
@@ -290,7 +211,9 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                 <h4>Izaberi veličinu</h4>
             <div className='coffeeSize'>
                 <div className='small'>
-                    <label htmlFor="smallCup" style={coffee.size == 'small' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                    <label 
+                    htmlFor="smallCup" 
+                    style={coffee.size == 'small' ? { backgroundColor: 'rgba(255, 165, 0, 1)'} : { backgroundColor: 'white' }}>
                         <input 
                         id='smallCup'
                         type='radio' 
@@ -301,13 +224,13 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                         <img src={cupOfCoffee} alt="Cup of Coffee" />
                         <span>S</span>
                     </label>
-                    <p>{cafe?.price?.small}</p>
+                    <p ref={smallPrice}>{cafe?.price?.small}</p>
                 </div>
                 
                 <div className='medium'>
                     <label 
                     htmlFor="mediumCup" 
-                    style={coffee.size == 'medium' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}> 
+                    style={coffee.size == 'medium' ? { backgroundColor: 'rgba(255, 165, 0, 1)' } : {backgroundColor: 'white'}}> 
                         <input 
                         id='mediumCup' 
                         type='radio' 
@@ -318,13 +241,13 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                         <img src={cupOfCoffee} alt="Cup of Coffee" />
                         <span>M</span>
                     </label>
-                    <p>{cafe?.price?.medium}</p>
+                    <p ref={mediumPrice}>{cafe?.price?.medium}</p>
                 </div>
             
                 <div className='large'>
                     <label 
                     htmlFor="largeCup" 
-                    style={coffee.size  == 'large' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                    style={coffee.size  == 'large' ? { backgroundColor: 'rgba(255, 165, 0, 1)'} : {backgroundColor: 'white'}}>
                         <input 
                         id='largeCup' 
                         type='radio' 
@@ -335,7 +258,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                         <img src={cupOfCoffee} alt="Cup of Coffee" />
                         <span>L</span>
                     </label>
-                    <p>{cafe?.price?.large}</p>
+                    <p ref={largePrice}>{cafe?.price?.large}</p>
                 </div>
             </div>
             
@@ -347,7 +270,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
             </div>
 
             <div className='grainClass' style={coffeeName == 'Topla čokolada' ? {display: 'none'} : {display: 'inline-flex'}}>
-                <label htmlFor="brazil" style={coffee.grain  == 'Brazil' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                <label htmlFor="brazil" style={coffee.grain  == 'Brazil' ? { backgroundColor: 'rgba(255, 165, 0, 1)', color: 'white' } : { backgroundColor: 'white' }}>
                     <input 
                     id='brazil' 
                     type='radio' 
@@ -356,7 +279,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     onChange={handleChange}
                     />Brazil
                 </label>
-                <label htmlFor="kuba" style={coffee.grain  == 'Kuba' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                <label htmlFor="kuba" style={coffee.grain  == 'Kuba' ? { backgroundColor: 'rgba(255, 165, 0, 1)', color: 'white' } : { backgroundColor: 'white' }}>
                     <input 
                     id='kuba' 
                     type='radio' 
@@ -365,7 +288,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     onChange={handleChange}
                     />Kuba
                 </label>
-                <label htmlFor="etiopija" style={coffee.grain  == 'Etiopija' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                <label htmlFor="etiopija" style={coffee.grain  == 'Etiopija' ? { backgroundColor: 'rgba(255, 165, 0, 1)', color: 'white' } : { backgroundColor: 'white' }}>
                     <input 
                     id='etiopija'
                     type='radio' 
@@ -406,7 +329,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                 coffeeName == 'Ice Coffee' ||
                 coffeeName == 'Ice Coffee sa sladoledom' 
                 ? {display: 'none'} : {display: 'inline-flex'}}>
-                <label htmlFor="obicno" style={coffee.milk  == 'Obično' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                <label htmlFor="obicno" style={coffee.milk  == 'Obično' ? { backgroundColor: 'rgba(255, 165, 0, 1)' } : {backgroundColor: 'white'}}>
                     <input
                     id='obicno'
                     type='radio' 
@@ -415,7 +338,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     onChange={handleChange}
                     />Obično
                 </label>
-                <label htmlFor='sojino' style={coffee.milk  == 'Sojino' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                <label htmlFor='sojino' style={coffee.milk  == 'Sojino' ? { backgroundColor: 'rgba(255, 165, 0, 1)' } : {backgroundColor: 'white'}}>
                     <input
                     id='sojino'
                     type='radio' 
@@ -424,7 +347,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     onChange={handleChange}
                     />Sojino
                 </label>
-                <label htmlFor="bademovo" style={coffee.milk  == 'Bademovo' ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}>
+                <label htmlFor="bademovo" style={coffee.milk  == 'Bademovo' ? { backgroundColor: 'rgba(255, 165, 0, 1)' } : {backgroundColor: 'white'}}>
                     <input
                     id='bademovo'
                     type='radio' 
@@ -450,11 +373,9 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
 
             <div className='btns'>
                 <button 
-                style={ addToBasket ? {backgroundColor: 'yellow'} : {backgroundColor: 'white'}}
                 type='submit'
                 >DODAJ</button>
                 <button 
-                style={ CoffeeInfo ? {backgroundColor: 'white'} : {backgroundColor: 'yellow'}}
                 onClick={handleClose}
                 >OTKAŽI</button>
             </div>

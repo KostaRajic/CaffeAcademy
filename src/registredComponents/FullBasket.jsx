@@ -10,6 +10,7 @@ export const FullBasket = ({closeModal}) => {
 
     const handleBackFromPortal = () => {
         setShowCoffeeInfo(false);
+        closeModal(false)
     }
     return ReactDOM.createPortal(<div className='fullBasket'>
     <div className='fullBasketClass'>
