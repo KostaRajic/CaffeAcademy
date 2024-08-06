@@ -1,3 +1,5 @@
+/* eslint-disable no-constant-condition */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
@@ -33,14 +35,17 @@ export const MyOrder = ({ goBack }) => {
             setFullBasket(true)
         }
         setCount((prev) => prev + 1)
-        if (sumOfCoffee > 1 && sumOfCoffee < 10) {
-            setBasket((prevBasket) => 
-                prevBasket.map((item) =>
-                  item.id === id ? { ...item, count: item.count + 1 } : item
-                ))
-            }
-  
+        
+    if (sumOfCoffee > 1 && sumOfCoffee < 10) {
+        setBasket((prevBasket) => 
+            prevBasket.map((item) =>
+                item.id === id ? { ...item, count: item.count + 1, price: item.price + item.standardCoffeePrice } : item
+            ))
         }
+    }
+
+        console.log(basket)
+
 
     const handleMinusItem = (id) => {
         if (count > 1 && sumOfCoffee > 1) {
@@ -50,7 +55,7 @@ export const MyOrder = ({ goBack }) => {
         if (sumOfCoffee > 1) {
             setBasket((prevBasket) => 
             prevBasket.map((item) =>
-                item.id === id ? { ...item, count: item.count - 1 } : item
+                item.id === id ? { ...item, count: item.count - 1, price: item.price - item.standardCoffeePrice } : item
             ))
             }
         }
@@ -114,7 +119,7 @@ export const MyOrder = ({ goBack }) => {
                     <div className='totalToPay'>
                         Ukupno za plaćanje: <span>
                         {basket?.reduce((accumulator, currentValue) => {
-                            return accumulator + currentValue?.price
+                            return accumulator + currentValue.price
                             }, 0)}
                         </span>
                     </div>

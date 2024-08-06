@@ -89,6 +89,9 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     price: coffee.size == 'small' && count * smallCoffeePrice ||
                         coffee.size == 'medium' && count * mediumCoffeePrice ||
                         coffee.size == 'large' && count * largeCoffeePrice,
+                    standardCoffeePrice: coffee.size == 'small' && smallCoffeePrice ||
+                        coffee.size == 'medium' && mediumCoffeePrice ||
+                        coffee.size == 'large' && largeCoffeePrice,
                     count: coffeeBasket <= 10 ? item.count + count : item.count
                 }
                   : item
@@ -98,6 +101,9 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     price: coffee.size == 'small' && count * smallCoffeePrice ||
                             coffee.size == 'medium' && count * mediumCoffeePrice ||
                             coffee.size == 'large' && count * largeCoffeePrice,
+                    standardCoffeePrice: coffee.size == 'small' && smallCoffeePrice ||
+                            coffee.size == 'medium' && mediumCoffeePrice ||
+                            coffee.size == 'large' && largeCoffeePrice,
                     count: coffeeBasket <= 10 && count }];
             }
           })
@@ -114,6 +120,9 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     price: coffee.size == 'small' && count * smallCoffeePrice ||
                         coffee.size == 'medium' && count * mediumCoffeePrice ||
                         coffee.size == 'large' && count * largeCoffeePrice,
+                    standardCoffeePrice: coffee.size == 'small' && smallCoffeePrice ||
+                        coffee.size == 'medium' && mediumCoffeePrice ||
+                        coffee.size == 'large' && largeCoffeePrice,
                     count: coffeeBasket <= 10 ? item.count + count : item.count}
                   : item
               );
@@ -122,6 +131,9 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                 price: coffee.size == 'small' && count * smallCoffeePrice ||
                         coffee.size == 'medium' && count * mediumCoffeePrice ||
                         coffee.size == 'large' && count * largeCoffeePrice,
+                    standardCoffeePrice: coffee.size == 'small' && smallCoffeePrice ||
+                        coffee.size == 'medium' && mediumCoffeePrice ||
+                        coffee.size == 'large' && largeCoffeePrice,
                     count: coffeeBasket <= 10 && count }];
             }
           })
@@ -137,8 +149,11 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                 if (basket.length === 0) {
                     setBasket([...basket, {id: basket.length + 1, ...coffee, coffeeName: coffeeName, date: setNewDate(date), 
                         price: coffee.size == 'small' && count * smallCoffeePrice ||
-                        coffee.size == 'medium' && count * mediumCoffeePrice ||
-                        coffee.size == 'large' && count * largeCoffeePrice,
+                            coffee.size == 'medium' && count * mediumCoffeePrice ||
+                            coffee.size == 'large' && count * largeCoffeePrice,
+                        standardCoffeePrice: coffee.size == 'small' && smallCoffeePrice ||
+                            coffee.size == 'medium' && mediumCoffeePrice ||
+                            coffee.size == 'large' && largeCoffeePrice,
                     count: coffeeBasket <= 10 && count}])
                 } else handleCoffeeCountSizeAndMilk()
                     coffeeBasket <= 10 && count > 1 ? setAddToBasket(true) : setFullBasket(true)
@@ -166,6 +181,9 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     price: coffee.size == 'small' && count * smallCoffeePrice ||
                         coffee.size == 'medium' && count * mediumCoffeePrice ||
                         coffee.size == 'large' && count * largeCoffeePrice,
+                    standardCoffeePrice: coffee.size == 'small' && smallCoffeePrice ||
+                        coffee.size == 'medium' && mediumCoffeePrice ||
+                        coffee.size == 'large' && largeCoffeePrice,
                     count: count}])
             }  else handleCoffeeCountSizeAndGrain()
                 coffeeBasket <= 10 && count >= 1 ? setAddToBasket(true) : setFullBasket(true)
@@ -329,7 +347,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                 coffeeName == 'Ice Coffee' ||
                 coffeeName == 'Ice Coffee sa sladoledom' 
                 ? {display: 'none'} : {display: 'inline-flex'}}>
-                <label htmlFor="obicno" style={coffee.milk  == 'Obično' ? { backgroundColor: 'rgba(255, 165, 0, 1)' } : {backgroundColor: 'white'}}>
+                <label htmlFor="obicno" style={coffee.milk  == 'Obično' ? { backgroundColor: 'rgba(255, 165, 0, 1)', color: 'white' } : {backgroundColor: 'white'}}>
                     <input
                     id='obicno'
                     type='radio' 
@@ -338,7 +356,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     onChange={handleChange}
                     />Obično
                 </label>
-                <label htmlFor='sojino' style={coffee.milk  == 'Sojino' ? { backgroundColor: 'rgba(255, 165, 0, 1)' } : {backgroundColor: 'white'}}>
+                <label htmlFor='sojino' style={coffee.milk  == 'Sojino' ? { backgroundColor: 'rgba(255, 165, 0, 1)', color: 'white' } : {backgroundColor: 'white'}}>
                     <input
                     id='sojino'
                     type='radio' 
@@ -347,7 +365,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
                     onChange={handleChange}
                     />Sojino
                 </label>
-                <label htmlFor="bademovo" style={coffee.milk  == 'Bademovo' ? { backgroundColor: 'rgba(255, 165, 0, 1)' } : {backgroundColor: 'white'}}>
+                <label htmlFor="bademovo" style={coffee.milk  == 'Bademovo' ? { backgroundColor: 'rgba(255, 165, 0, 1)', color: 'white'  } : {backgroundColor: 'white'}}>
                     <input
                     id='bademovo'
                     type='radio' 
@@ -384,7 +402,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
         )}
 </div>
     </div> 
-            { addToBasket && <SuccessfulNotificationPortal closeModal={() => setAddToBasket()} />}
+            { addToBasket && <SuccessfulNotificationPortal closeModal={() => setAddToBasket()} prices={smallCoffeePrice}/>}
             { fullBasket && <FullBasket/>}
     </div>
 
