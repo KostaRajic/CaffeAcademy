@@ -16,15 +16,13 @@ export const Registration = () => {
         const { showModal, setShowModal, showModal2, setShowModal2 } = useContextAuth();
         const [ confirmEmail, setConfirmEmail ] = useState(false);
         const [ showLogin, setShowLogin ] = useState(false)
-        const [ formData, setFormData ] = useState(() => {
-                const savedItems = localStorage.getItem('user');
-                return savedItems ? JSON.parse(savedItems) : {
+        const [ formData, setFormData ] = useState({
                 name: '',
                 lastName: '',
                 email: '',
                 password: '',
                 confirmPassword: ''
-        }})
+        })
         const [ formErrors, setFormErrors ] = useState({});
         const [ isSubmit, setIsSubmit ] = useState(false)
 
@@ -38,12 +36,14 @@ export const Registration = () => {
 
         const handleSubmit = (e) => {
                 e.preventDefault()
-                if ((Object.keys(formErrors).length === 0 && isSubmit)) {
-                        setConfirmEmail(!confirmEmail)  
-                }
                 setFormErrors(validate(formData))
+                if ((Object.keys(formErrors).length === 0 && isSubmit)) {
+                        setConfirmEmail(!confirmEmail)
+                        localStorage.setItem('user', JSON.stringify(formData))
+                }
+
                 setIsSubmit(true)
-                localStorage.setItem('user', JSON.stringify(formData))
+                
         }
 
         const handleBack = (e) => {
@@ -73,11 +73,9 @@ export const Registration = () => {
                         errors.password = 'Lozinka je neophodna.'
                 } else if (!values.confirmPassword) {
                         errors.confirmPassword = 'Lozinka je neophodna.'
-                }
-                else if (values.name.length > 20) {
+                } else if (values.name.length > 20) {
                         errors.name = 'Ime mora da sadrži najviše 20 znakova alfabeta.'
-                }
-                else if (values.lastName.length > 20) {
+                } else if (values.lastName.length > 20) {
                         errors.lastName = 'Prezime mora da sadrži najviše 20 znakova alfabeta.'
                 } else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
                         errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
@@ -90,6 +88,7 @@ export const Registration = () => {
                 } else if (values.password !== values.confirmPassword) {
                         errors.confirmPassword = 'Lozinke se ne podudaraju.'
         }
+        
         return errors    
 }
 
@@ -139,8 +138,8 @@ export const Registration = () => {
     </form>
 
     <p>Imaš nalog? <span  
-    style={{cursor: 'pointer'}}
-    onClick={handleCloseRegister}
+        style={{cursor: 'pointer'}}
+        onClick={handleCloseRegister}
     >Prijavi se.</span></p>
 
         { showLogin && <Login /> } 
