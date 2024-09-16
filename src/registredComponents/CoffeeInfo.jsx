@@ -39,6 +39,8 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
     let smallCoffeePrice = parseInt(smallPrice?.current?.innerText.slice(0, 3))
     let mediumCoffeePrice = parseInt(mediumPrice?.current?.innerText.slice(0, 3))
     let largeCoffeePrice = parseInt(largePrice?.current?.innerText.slice(0, 3))
+    console.log(basket)
+    console.log(sumOfCoffee)
 
 
     useEffect(() => {
@@ -79,7 +81,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
         }
     
     const handleCoffeeCountSizeAndGrain = () => {
-        if (coffeeBasket < 10 && count <= 10) {
+        if (coffeeBasket <= 10 && count <= 10) {
         setBasket(prevItems => {
             const itemExists = prevItems.find(item => item.grain === coffee.grain && item.size === coffee.size && item.coffeeName === coffeeName);
             if (itemExists) {
@@ -110,7 +112,7 @@ export const CoffeeInfo = ({ coffeeName, closeCoffeeInfo }) => {
         }}
 
     const handleCoffeeCountSizeAndMilk = () => {
-        if (coffeeBasket < 10) {
+        if (coffeeBasket <= 10) {
         setBasket(prevItems => {
             const itemExists = prevItems.find(item => item.milk === coffee.milk && item.size === coffee.size && item.coffeeName === coffeeName);
             if (itemExists) {
