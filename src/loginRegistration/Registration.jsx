@@ -24,7 +24,7 @@ export const Registration = () => {
                 confirmPassword: ''
         })
         const [ formErrors, setFormErrors ] = useState({});
-        const [ isSubmit, setIsSubmit ] = useState(false)
+        const [ isSubmit, setIsSubmit ] = useState(false);
 
         const handleChange = (e) => {
                 const {name, value} = e.target;
@@ -41,9 +41,7 @@ export const Registration = () => {
                         setConfirmEmail(!confirmEmail)
                         localStorage.setItem('user', JSON.stringify(formData))
                 }
-
                 setIsSubmit(true)
-                
         }
 
         const handleBack = (e) => {

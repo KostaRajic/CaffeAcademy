@@ -53,13 +53,13 @@ export const CreateNewPassword = ({ backFromCreate }) => {
       } else if (!values.confirmPassword) {
               errors.confirmPassword = 'Lozinka je neophodna.'
       } else if (values.password.split('').every((e => !/[A-Z]/.test(e)))) {
-              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+              errors.password = 'Lozinka mora da sadrži minimum 6 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
       } else if (values.password.split('').every((e => !/[a-z]/.test(e)))) {
-              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+              errors.password = 'Lozinka mora da sadrži minimum 6 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
       } else if (values.password.split('').map(e => Number(e)).every(e => isNaN(e))) {
-              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
-      } else if (values.password.length < 8) {
-              errors.password = 'Lozinka mora da sadrži minimum 8 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'   
+              errors.password = 'Lozinka mora da sadrži minimum 6 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'
+      } else if (values.password.length < 6) {
+              errors.password = 'Lozinka mora da sadrži minimum 6 karaktera, jedno veliko slovo, jedno malo slovo i jedan broj.'   
       } else if (values.password !== values.confirmPassword) {
               errors.confirmPassword = 'Lozinke se ne podudaraju.'
 }
